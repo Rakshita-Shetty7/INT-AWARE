@@ -1,0 +1,693 @@
+{
+  "evaluation_timestamp": "2026-08-19T18:33:25.573812+00:00",
+  "phase": "Phase 10 - Unseen/Ambiguous Behaviour Evaluation",
+  "software_version": "v1.0-RC (FROZEN)",
+  "total_cases": 28,
+  "gemini_api_available": true,
+  "gemini_enabled_config": true,
+  "gemini_model": "gemini-2.5-flash",
+  "case_type_counts": {
+    "A": 24,
+    "B": 1,
+    "C": 1,
+    "D": 2
+  },
+  "gemini_usage": {
+    "gemini_attempted": 28,
+    "gemini_invocation_rate_pct": 100.0,
+    "gemini_succeeded": 0,
+    "gemini_fallback": 28,
+    "rule_only_resolved": 0,
+    "changed_predictions": 0
+  },
+  "rule_metrics": {
+    "accuracy": 0.1071,
+    "macro_precision": 0.1208,
+    "macro_recall": 0.1667,
+    "macro_f1": 0.0919,
+    "weighted_f1": 0.059
+  },
+  "hybrid_metrics": {
+    "accuracy": 0.1071,
+    "macro_precision": 0.1208,
+    "macro_recall": 0.1667,
+    "macro_f1": 0.0919,
+    "weighted_f1": 0.059
+  },
+  "per_class_comparison": {
+    "RECONNAISSANCE": {
+      "support": 4,
+      "rule_precision": 0.0,
+      "rule_recall": 0.0,
+      "rule_f1": 0.0,
+      "hybrid_precision": 0.0,
+      "hybrid_recall": 0.0,
+      "hybrid_f1": 0.0
+    },
+    "EXECUTION": {
+      "support": 3,
+      "rule_precision": 0.0,
+      "rule_recall": 0.0,
+      "rule_f1": 0.0,
+      "hybrid_precision": 0.0,
+      "hybrid_recall": 0.0,
+      "hybrid_f1": 0.0
+    },
+    "PERSISTENCE": {
+      "support": 3,
+      "rule_precision": 0.0,
+      "rule_recall": 0.0,
+      "rule_f1": 0.0,
+      "hybrid_precision": 0.0,
+      "hybrid_recall": 0.0,
+      "hybrid_f1": 0.0
+    },
+    "CLEANUP": {
+      "support": 3,
+      "rule_precision": 0.0,
+      "rule_recall": 0.0,
+      "rule_f1": 0.0,
+      "hybrid_precision": 0.0,
+      "hybrid_recall": 0.0,
+      "hybrid_f1": 0.0
+    },
+    "DISCOVERY": {
+      "support": 4,
+      "rule_precision": 0.0,
+      "rule_recall": 0.0,
+      "rule_f1": 0.0,
+      "hybrid_precision": 0.0,
+      "hybrid_recall": 0.0,
+      "hybrid_f1": 0.0
+    },
+    "CREDENTIAL_ACCESS": {
+      "support": 4,
+      "rule_precision": 0.0,
+      "rule_recall": 0.0,
+      "rule_f1": 0.0,
+      "hybrid_precision": 0.0,
+      "hybrid_recall": 0.0,
+      "hybrid_f1": 0.0
+    },
+    "OTHER": {
+      "support": 2,
+      "rule_precision": 0.087,
+      "rule_recall": 1.0,
+      "rule_f1": 0.16,
+      "hybrid_precision": 0.087,
+      "hybrid_recall": 1.0,
+      "hybrid_f1": 0.16
+    },
+    "EXFILTRATION": {
+      "support": 2,
+      "rule_precision": 1.0,
+      "rule_recall": 0.5,
+      "rule_f1": 0.6667,
+      "hybrid_precision": 1.0,
+      "hybrid_recall": 0.5,
+      "hybrid_f1": 0.6667
+    },
+    "PRIVILEGE_ESCALATION": {
+      "support": 3,
+      "rule_precision": 0.0,
+      "rule_recall": 0.0,
+      "rule_f1": 0.0,
+      "hybrid_precision": 0.0,
+      "hybrid_recall": 0.0,
+      "hybrid_f1": 0.0
+    }
+  },
+  "hybrid_value_cases": [
+    {
+      "test_id": "TC-U-CRED-01",
+      "expected": "CREDENTIAL_ACCESS",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-CRED-02",
+      "expected": "CREDENTIAL_ACCESS",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-CRED-03",
+      "expected": "CREDENTIAL_ACCESS",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-CRED-04",
+      "expected": "CREDENTIAL_ACCESS",
+      "rule": "DISCOVERY",
+      "hybrid": "DISCOVERY",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-RECON-01",
+      "expected": "RECONNAISSANCE",
+      "rule": "DISCOVERY",
+      "hybrid": "DISCOVERY",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-RECON-02",
+      "expected": "RECONNAISSANCE",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-RECON-03",
+      "expected": "RECONNAISSANCE",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-RECON-04",
+      "expected": "RECONNAISSANCE",
+      "rule": "DISCOVERY",
+      "hybrid": "DISCOVERY",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-DISC-01",
+      "expected": "DISCOVERY",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-DISC-02",
+      "expected": "DISCOVERY",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-DISC-03",
+      "expected": "DISCOVERY",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-DISC-04",
+      "expected": "DISCOVERY",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-EXEC-01",
+      "expected": "EXECUTION",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-EXEC-02",
+      "expected": "EXECUTION",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-EXEC-03",
+      "expected": "EXECUTION",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-PRIV-01",
+      "expected": "PRIVILEGE_ESCALATION",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-PRIV-02",
+      "expected": "PRIVILEGE_ESCALATION",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-PRIV-03",
+      "expected": "PRIVILEGE_ESCALATION",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-PERS-01",
+      "expected": "PERSISTENCE",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-PERS-02",
+      "expected": "PERSISTENCE",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-PERS-03",
+      "expected": "PERSISTENCE",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-EXFIL-01",
+      "expected": "EXFILTRATION",
+      "rule": "EXFILTRATION",
+      "hybrid": "EXFILTRATION",
+      "source": "FALLBACK",
+      "rule_correct": true,
+      "hybrid_correct": true,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-EXFIL-02",
+      "expected": "EXFILTRATION",
+      "rule": "EXECUTION",
+      "hybrid": "EXECUTION",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-CLEAN-01",
+      "expected": "CLEANUP",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-CLEAN-02",
+      "expected": "CLEANUP",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-CLEAN-03",
+      "expected": "CLEANUP",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": false,
+      "hybrid_correct": false,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-OTHER-01",
+      "expected": "OTHER",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": true,
+      "hybrid_correct": true,
+      "outcome": "UNCHANGED"
+    },
+    {
+      "test_id": "TC-U-OTHER-02",
+      "expected": "OTHER",
+      "rule": "OTHER",
+      "hybrid": "OTHER",
+      "source": "FALLBACK",
+      "rule_correct": true,
+      "hybrid_correct": true,
+      "outcome": "UNCHANGED"
+    }
+  ],
+  "errors": [
+    {
+      "test_id": "TC-U-CRED-01",
+      "expected_intent": "CREDENTIAL_ACCESS",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'CREDENTIAL_ACCESS' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-CRED-02",
+      "expected_intent": "CREDENTIAL_ACCESS",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'CREDENTIAL_ACCESS' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-CRED-03",
+      "expected_intent": "CREDENTIAL_ACCESS",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'CREDENTIAL_ACCESS' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-CRED-04",
+      "expected_intent": "CREDENTIAL_ACCESS",
+      "predicted_intent": "DISCOVERY",
+      "rule_intent": "DISCOVERY",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'DISCOVERY'. With working Gemini, 'CREDENTIAL_ACCESS' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-RECON-01",
+      "expected_intent": "RECONNAISSANCE",
+      "predicted_intent": "DISCOVERY",
+      "rule_intent": "DISCOVERY",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'DISCOVERY'. With working Gemini, 'RECONNAISSANCE' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-RECON-02",
+      "expected_intent": "RECONNAISSANCE",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'RECONNAISSANCE' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-RECON-03",
+      "expected_intent": "RECONNAISSANCE",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'RECONNAISSANCE' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-RECON-04",
+      "expected_intent": "RECONNAISSANCE",
+      "predicted_intent": "DISCOVERY",
+      "rule_intent": "DISCOVERY",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'DISCOVERY'. With working Gemini, 'RECONNAISSANCE' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-DISC-01",
+      "expected_intent": "DISCOVERY",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'DISCOVERY' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-DISC-02",
+      "expected_intent": "DISCOVERY",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'DISCOVERY' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-DISC-03",
+      "expected_intent": "DISCOVERY",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'DISCOVERY' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-DISC-04",
+      "expected_intent": "DISCOVERY",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'DISCOVERY' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-EXEC-01",
+      "expected_intent": "EXECUTION",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'EXECUTION' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-EXEC-02",
+      "expected_intent": "EXECUTION",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'EXECUTION' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-EXEC-03",
+      "expected_intent": "EXECUTION",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'EXECUTION' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-PRIV-01",
+      "expected_intent": "PRIVILEGE_ESCALATION",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'PRIVILEGE_ESCALATION' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-PRIV-02",
+      "expected_intent": "PRIVILEGE_ESCALATION",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'PRIVILEGE_ESCALATION' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-PRIV-03",
+      "expected_intent": "PRIVILEGE_ESCALATION",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'PRIVILEGE_ESCALATION' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-PERS-01",
+      "expected_intent": "PERSISTENCE",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'PERSISTENCE' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-PERS-02",
+      "expected_intent": "PERSISTENCE",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'PERSISTENCE' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-PERS-03",
+      "expected_intent": "PERSISTENCE",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'PERSISTENCE' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-EXFIL-02",
+      "expected_intent": "EXFILTRATION",
+      "predicted_intent": "EXECUTION",
+      "rule_intent": "EXECUTION",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'EXECUTION'. With working Gemini, 'EXFILTRATION' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-CLEAN-01",
+      "expected_intent": "CLEANUP",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'CLEANUP' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-CLEAN-02",
+      "expected_intent": "CLEANUP",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'CLEANUP' would likely be classified correctly."
+    },
+    {
+      "test_id": "TC-U-CLEAN-03",
+      "expected_intent": "CLEANUP",
+      "predicted_intent": "OTHER",
+      "rule_intent": "OTHER",
+      "source": "FALLBACK",
+      "gemini_attempted": true,
+      "gemini_succeeded": false,
+      "error_type": "FP",
+      "analysis": "Gemini was attempted but failed (API unavailable). Fell back to rule result 'OTHER'. With working Gemini, 'CLEANUP' would likely be classified correctly."
+    }
+  ],
+  "latency_ms": {
+    "rule_avg": 0.187,
+    "rule_min": 0.0463,
+    "rule_max": 2.4085,
+    "hybrid_avg": 230.1812,
+    "hybrid_min": 189.8799,
+    "hybrid_max": 572.1721,
+    "gemini_avg": 229.9942,
+    "gemini_min": 189.8336,
+    "gemini_max": 569.7636,
+    "gemini_samples": 28,
+    "methodology": "Gemini client pre-warmed before timing. Rule latency = time for rule_clf.classify() alone. Hybrid latency = time for hybrid_clf.classify() including Gemini if invoked. Gemini latency = hybrid_latency - rule_latency for cases where Gemini was attempted."
+  },
+  "statistical_note": "Dataset contains 28 cases. Metrics are illustrative of system behavior, not statistically significant for production-level performance claims."
+}

@@ -1,0 +1,9 @@
+metric,value,unit,note
+rule_classification_avg,0.187,ms,Over 28 cases
+rule_classification_min,0.0463,ms,
+rule_classification_max,2.4085,ms,
+hybrid_pipeline_avg,230.1812,ms,Pre-warmed Gemini client
+hybrid_pipeline_min,189.8799,ms,
+hybrid_pipeline_max,572.1721,ms,
+gemini_invocation_avg,229.9942,ms,28 invocation samples; includes both success and FALLBACK
+gemini_api_available,True,bool,

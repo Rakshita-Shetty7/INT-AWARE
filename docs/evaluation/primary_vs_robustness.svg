@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="340" viewBox="0 0 560 340" font-family="Menlo,Consolas,monospace">
+<title>Primary vs robustness</title>
+<rect width="560" height="340" fill="#0d121d"/>
+<text x="280.0" y="30" font-size="15" fill="#e2e8f0" text-anchor="middle" font-weight="bold">Generalisation: Held-out vs Leave-families-out</text>
+<text x="280.0" y="50" font-size="10" fill="#94a3b8" text-anchor="middle" font-weight="normal">honest reporting — the stricter score is shown, not hidden</text>
+<line x1="80" y1="260" x2="530" y2="260" stroke="#1f293d"/>
+<text x="74" y="264" font-size="9" fill="#94a3b8" text-anchor="end" font-weight="normal">0.00</text>
+<line x1="80" y1="215.0" x2="530" y2="215.0" stroke="#1f293d"/>
+<text x="74" y="219.0" font-size="9" fill="#94a3b8" text-anchor="end" font-weight="normal">0.25</text>
+<line x1="80" y1="170.0" x2="530" y2="170.0" stroke="#1f293d"/>
+<text x="74" y="174.0" font-size="9" fill="#94a3b8" text-anchor="end" font-weight="normal">0.50</text>
+<line x1="80" y1="125.0" x2="530" y2="125.0" stroke="#1f293d"/>
+<text x="74" y="129.0" font-size="9" fill="#94a3b8" text-anchor="end" font-weight="normal">0.75</text>
+<line x1="80" y1="80.0" x2="530" y2="80.0" stroke="#1f293d"/>
+<text x="74" y="84.0" font-size="9" fill="#94a3b8" text-anchor="end" font-weight="normal">1.00</text>
+<rect x="110.0" y="89.918" width="45.0" height="170.082" fill="#22d3ee" rx="2"/>
+<text x="132.5" y="83.918" font-size="10" fill="#e2e8f0" text-anchor="middle" font-weight="bold">0.945</text>
+<text x="132.5" y="276" font-size="9" fill="#94a3b8" text-anchor="middle" font-weight="normal">accuracy</text>
+<rect x="161.0" y="93.87799999999999" width="45.0" height="166.122" fill="#a78bfa" rx="2"/>
+<text x="183.5" y="87.87799999999999" font-size="10" fill="#e2e8f0" text-anchor="middle" font-weight="bold">0.923</text>
+<text x="183.5" y="276" font-size="9" fill="#94a3b8" text-anchor="middle" font-weight="normal">macro-F1</text>
+<text x="155.0" y="296" font-size="10" fill="#e2e8f0" text-anchor="middle" font-weight="normal">Held-out split</text>
+<text x="155.0" y="310" font-size="10" fill="#e2e8f0" text-anchor="middle" font-weight="normal">(no shared command)</text>
+<rect x="300.0" y="137.834" width="45.0" height="122.166" fill="#22d3ee" rx="2"/>
+<text x="322.5" y="131.834" font-size="10" fill="#e2e8f0" text-anchor="middle" font-weight="bold">0.679</text>
+<text x="322.5" y="276" font-size="9" fill="#94a3b8" text-anchor="middle" font-weight="normal">accuracy</text>
+<rect x="351.0" y="165.19400000000002" width="45.0" height="94.80599999999998" fill="#a78bfa" rx="2"/>
+<text x="373.5" y="159.19400000000002" font-size="10" fill="#e2e8f0" text-anchor="middle" font-weight="bold">0.527</text>
+<text x="373.5" y="276" font-size="9" fill="#94a3b8" text-anchor="middle" font-weight="normal">macro-F1</text>
+<text x="345.0" y="296" font-size="10" fill="#e2e8f0" text-anchor="middle" font-weight="normal">Leave-families-out</text>
+<text x="345.0" y="310" font-size="10" fill="#e2e8f0" text-anchor="middle" font-weight="normal">(stricter, novel templates)</text>
+</svg>

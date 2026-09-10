@@ -1,0 +1,8 @@
+metric,value,unit,note
+rule_classification_avg,0.0213,ms,Average over 100 repetitions
+rule_classification_min,0.0162,ms,
+rule_classification_max,0.0718,ms,
+hybrid_pipeline_avg,268.9498,ms,Includes rule + risk eval
+hybrid_pipeline_min,178.716,ms,
+hybrid_pipeline_max,393.2029,ms,
+gemini_latency_eval_avg,N/A (Gemini not invoked),ms,From 0 invocations during evaluation
