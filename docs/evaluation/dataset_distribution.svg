@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="710" height="440" viewBox="0 0 710 440" font-family="Menlo,Consolas,monospace">
+<title>Labelled sample distribution</title>
+<rect width="710" height="440" fill="#0d121d"/>
+<text x="355.0" y="30" font-size="14" fill="#e2e8f0" text-anchor="middle" font-weight="bold">Dataset — Labelled Samples per Class (1360 total, de-duplicated)</text>
+<text x="182" y="88" font-size="10" fill="#e2e8f0" text-anchor="end" font-weight="normal">EXECUTION</text>
+<rect x="190" y="76" width="430.0" height="16" fill="#22d3ee" rx="2"/>
+<text x="626.0" y="89" font-size="10" fill="#94a3b8" text-anchor="start" font-weight="normal">318  (24 families)</text>
+<text x="182" y="122" font-size="10" fill="#e2e8f0" text-anchor="end" font-weight="normal">EXFILTRATION</text>
+<rect x="190" y="110" width="248.8" height="16" fill="#22d3ee" rx="2"/>
+<text x="444.80503144654085" y="123" font-size="10" fill="#94a3b8" text-anchor="start" font-weight="normal">184  (18 families)</text>
+<text x="182" y="156" font-size="10" fill="#e2e8f0" text-anchor="end" font-weight="normal">PERSISTENCE</text>
+<rect x="190" y="144" width="219.1" height="16" fill="#22d3ee" rx="2"/>
+<text x="415.0566037735849" y="157" font-size="10" fill="#94a3b8" text-anchor="start" font-weight="normal">162  (20 families)</text>
+<text x="182" y="190" font-size="10" fill="#e2e8f0" text-anchor="end" font-weight="normal">DISCOVERY</text>
+<rect x="190" y="178" width="181.2" height="16" fill="#22d3ee" rx="2"/>
+<text x="377.19496855345915" y="191" font-size="10" fill="#94a3b8" text-anchor="start" font-weight="normal">134  (35 families)</text>
+<text x="182" y="224" font-size="10" fill="#e2e8f0" text-anchor="end" font-weight="normal">CREDENTIAL_ACCESS</text>
+<rect x="190" y="212" width="163.6" height="16" fill="#22d3ee" rx="2"/>
+<text x="359.6163522012579" y="225" font-size="10" fill="#94a3b8" text-anchor="start" font-weight="normal">121  (27 families)</text>
+<text x="182" y="258" font-size="10" fill="#e2e8f0" text-anchor="end" font-weight="normal">OTHER</text>
+<rect x="190" y="246" width="158.2" height="16" fill="#22d3ee" rx="2"/>
+<text x="354.20754716981133" y="259" font-size="10" fill="#94a3b8" text-anchor="start" font-weight="normal">117  (24 families)</text>
+<text x="182" y="292" font-size="10" fill="#e2e8f0" text-anchor="end" font-weight="normal">EXPLOITATION</text>
+<rect x="190" y="280" width="135.2" height="16" fill="#22d3ee" rx="2"/>
+<text x="331.2201257861635" y="293" font-size="10" fill="#94a3b8" text-anchor="start" font-weight="normal">100  (18 families)</text>
+<text x="182" y="326" font-size="10" fill="#e2e8f0" text-anchor="end" font-weight="normal">CLEANUP</text>
+<rect x="190" y="314" width="117.6" height="16" fill="#22d3ee" rx="2"/>
+<text x="313.64150943396226" y="327" font-size="10" fill="#94a3b8" text-anchor="start" font-weight="normal">87  (18 families)</text>
+<text x="182" y="360" font-size="10" fill="#e2e8f0" text-anchor="end" font-weight="normal">RECONNAISSANCE</text>
+<rect x="190" y="348" width="108.2" height="16" fill="#22d3ee" rx="2"/>
+<text x="304.17610062893084" y="361" font-size="10" fill="#94a3b8" text-anchor="start" font-weight="normal">80  (28 families)</text>
+<text x="182" y="394" font-size="10" fill="#e2e8f0" text-anchor="end" font-weight="normal">PRIVILEGE_ESCALATION</text>
+<rect x="190" y="382" width="77.1" height="16" fill="#22d3ee" rx="2"/>
+<text x="273.07547169811323" y="395" font-size="10" fill="#94a3b8" text-anchor="start" font-weight="normal">57  (30 families)</text>
+</svg>

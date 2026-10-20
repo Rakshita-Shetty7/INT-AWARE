@@ -1,0 +1,311 @@
+{
+  "generated_at": "2026-10-20T06:32:16.226893+00:00",
+  "task": "command -> attacker intent classification",
+  "intent_taxonomy": [
+    "RECONNAISSANCE",
+    "DISCOVERY",
+    "CREDENTIAL_ACCESS",
+    "EXECUTION",
+    "PRIVILEGE_ESCALATION",
+    "PERSISTENCE",
+    "EXPLOITATION",
+    "EXFILTRATION",
+    "CLEANUP",
+    "OTHER"
+  ],
+  "dataset": {
+    "total_unique_samples": 1360,
+    "raw_expansion_samples": 1365,
+    "exact_duplicates_removed": 5,
+    "total_families": 242,
+    "class_distribution": {
+      "RECONNAISSANCE": {
+        "samples": 80,
+        "families": 28
+      },
+      "DISCOVERY": {
+        "samples": 134,
+        "families": 35
+      },
+      "CREDENTIAL_ACCESS": {
+        "samples": 121,
+        "families": 27
+      },
+      "EXECUTION": {
+        "samples": 318,
+        "families": 24
+      },
+      "PRIVILEGE_ESCALATION": {
+        "samples": 57,
+        "families": 30
+      },
+      "PERSISTENCE": {
+        "samples": 162,
+        "families": 20
+      },
+      "EXPLOITATION": {
+        "samples": 100,
+        "families": 18
+      },
+      "EXFILTRATION": {
+        "samples": 184,
+        "families": 18
+      },
+      "CLEANUP": {
+        "samples": 87,
+        "families": 18
+      },
+      "OTHER": {
+        "samples": 117,
+        "families": 24
+      }
+    }
+  },
+  "primary_evaluation": {
+    "split": "standard stratified 80/20 on de-duplicated commands",
+    "leakage_control": "no identical command string appears in both train and test (asserted)",
+    "train_samples": 1088,
+    "test_samples": 272,
+    "model_selection_cv": "4-fold StratifiedKFold on train, scoring=f1_macro",
+    "candidates": {
+      "linsvc_calibrated": {
+        "cv_macro_f1_mean": 0.8539,
+        "cv_macro_f1_std": 0.0181
+      },
+      "logreg": {
+        "cv_macro_f1_mean": 0.8482,
+        "cv_macro_f1_std": 0.0172
+      },
+      "complement_nb": {
+        "cv_macro_f1_mean": 0.8146,
+        "cv_macro_f1_std": 0.0282
+      }
+    },
+    "selected_model": "linsvc_calibrated",
+    "accuracy": 0.9449,
+    "macro_precision": 0.9367,
+    "macro_recall": 0.9158,
+    "macro_f1": 0.9229,
+    "weighted_precision": 0.9466,
+    "weighted_recall": 0.9449,
+    "weighted_f1": 0.9436,
+    "per_class": {
+      "CLEANUP": {
+        "support": 17,
+        "precision": 1.0,
+        "recall": 0.9412,
+        "f1": 0.9697
+      },
+      "CREDENTIAL_ACCESS": {
+        "support": 24,
+        "precision": 0.8276,
+        "recall": 1.0,
+        "f1": 0.9057
+      },
+      "DISCOVERY": {
+        "support": 27,
+        "precision": 0.8276,
+        "recall": 0.8889,
+        "f1": 0.8571
+      },
+      "EXECUTION": {
+        "support": 64,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "EXFILTRATION": {
+        "support": 37,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "EXPLOITATION": {
+        "support": 20,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "OTHER": {
+        "support": 23,
+        "precision": 0.9091,
+        "recall": 0.8696,
+        "f1": 0.8889
+      },
+      "PERSISTENCE": {
+        "support": 32,
+        "precision": 0.9697,
+        "recall": 1.0,
+        "f1": 0.9846
+      },
+      "PRIVILEGE_ESCALATION": {
+        "support": 12,
+        "precision": 1.0,
+        "recall": 0.8333,
+        "f1": 0.9091
+      },
+      "RECONNAISSANCE": {
+        "support": 16,
+        "precision": 0.8333,
+        "recall": 0.625,
+        "f1": 0.7143
+      }
+    },
+    "confusion_matrix": {
+      "labels": [
+        "CLEANUP",
+        "CREDENTIAL_ACCESS",
+        "DISCOVERY",
+        "EXECUTION",
+        "EXFILTRATION",
+        "EXPLOITATION",
+        "OTHER",
+        "PERSISTENCE",
+        "PRIVILEGE_ESCALATION",
+        "RECONNAISSANCE"
+      ],
+      "matrix": [
+        [
+          16,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          24,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          24,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          64,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          37,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          20,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          20,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          32,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          10,
+          1
+        ],
+        [
+          0,
+          3,
+          2,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          10
+        ]
+      ]
+    }
+  },
+  "robustness_evaluation": {
+    "split": "leave-families-out (whole template families held out; stricter than standard)",
+    "leakage_control": "no template family appears in both train and test (asserted)",
+    "train_samples": 1055,
+    "test_samples": 305,
+    "accuracy": 0.6787,
+    "macro_f1": 0.5267,
+    "interpretation": "Generalisation to command templates never seen in training. Lower than the primary score by design; the hybrid rule engine and Gemini semantic layer handle these novel/ambiguous cases at runtime."
+  },
+  "environment": {
+    "python": "3.13.12",
+    "sklearn": "1.9.0",
+    "numpy": "2.5.2"
+  },
+  "honesty_notes": [
+    "All metrics are computed by scikit-learn on genuine held-out data.",
+    "Primary split: no identical command string is shared between train and test.",
+    "A stricter leave-families-out score is also reported (not hidden).",
+    "No metric was hand-edited; re-running train.py reproduces these numbers (fixed RANDOM_SEED=1337)."
+  ]
+}

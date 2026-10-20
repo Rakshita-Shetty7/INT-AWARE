@@ -1,0 +1,15 @@
+# Build context hygiene for the backend image (context = repo root)
+**/node_modules
+**/.venv
+.venv
+**/__pycache__
+**/*.py[cod]
+.git
+.gitignore
+**/.pytest_cache
+frontend/dist
+frontend/node_modules
+honeypot/var
+**/*.log
+*.md
+docs

@@ -1,0 +1,9 @@
+# Cowrie Honeypot User Database
+# Format: <username>:<status>:<password>
+# status: 'x' = allow login, '*' = deny, '!' = locked
+root:x:root
+root:x:password
+root:x:123456
+admin:x:admin
+admin:x:password
+guest:x:guest

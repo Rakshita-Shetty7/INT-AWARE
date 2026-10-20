@@ -1,0 +1,59 @@
+# Intent-Aware Deception System — full stack
+# mongo (state) + cowrie (isolated honeypot) + api (FastAPI + pipeline) + dashboard (React/nginx)
+#
+# Security posture:
+#   - Cowrie is the ONLY component that ingests attacker commands; it runs isolated in its own
+#     container and never executes anything on the host. The API mounts its logs READ-ONLY.
+#   - Every host port is bound to 127.0.0.1 only (no LAN exposure).
+#   - Mongo is not published to the host at all; it is reachable only on the internal compose network.
+
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+    # intentionally not published to the host
+
+  cowrie:
+    image: cowrie/cowrie:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:2222:2222"     # SSH honeypot (localhost only)
+    volumes:
+      - cowrie-logs:/cowrie/cowrie-git/var/log/cowrie
+      # Deterministic demo credentials (root/root, admin/admin, ...) instead of Cowrie defaults
+      - ./honeypot/etc/userdb.txt:/cowrie/cowrie-git/etc/userdb.txt:ro
+
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      MONGODB_URI: mongodb://mongo:27017
+      DATABASE_NAME: intent_deception_db
+      COWRIE_LOG_PATH: /cowrie/cowrie.json
+      PIPELINE_ENABLED: "true"
+      PIPELINE_FROM_BEGINNING: "true"
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - cowrie-logs:/cowrie:ro     # read-only view of the honeypot's JSON log
+    depends_on:
+      - mongo
+      - cowrie
+
+  dashboard:
+    build:
+      context: ./frontend
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5173:80"
+    depends_on:
+      - api
+
+volumes:
+  mongo-data:
+  cowrie-logs:

@@ -1,0 +1,18 @@
+# ===== Web / API =====
+fastapi==0.141.1
+uvicorn[standard]==0.52.4
+pydantic==2.13.4
+python-dotenv==1.2.3
+
+# ===== Database (synchronous driver) =====
+pymongo==4.17.0
+
+# ===== Machine Learning (command -> intent classifier) =====
+scikit-learn==1.9.0
+numpy==2.5.2
+scipy==1.18.1
+pandas==3.0.5
+joblib==1.5.3
+
+# ===== Optional semantic layer (graceful fallback if key/network absent) =====
+google-genai==2.19.0

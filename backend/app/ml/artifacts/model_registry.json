@@ -1,0 +1,31 @@
+{
+  "updated_at": "2026-10-17T10:17:04.129905+00:00",
+  "models": [
+    {
+      "model_id": "intaware_linear_svc_calibrated_v1",
+      "version": "1.0.0",
+      "model_family": "CalibratedClassifierCV(LinearSVC)",
+      "artifact_path": "C:\\Users\\raksh\\OneDrive\\Desktop\\INT-AWARE\\backend\\app\\ml\\artifacts\\intent_classifier.joblib",
+      "artifact_sha256": "be96da92c2365cf5b8f4129df9101633e4a03ac3ca27a3c6924142a1dff069aa",
+      "dataset_version": "v1.0-primary",
+      "dataset_sha256": null,
+      "trained_at": "2026-10-17T10:17:04.128033Z",
+      "primary_metrics": {
+        "accuracy": 0.9449,
+        "macro_f1": 0.9229,
+        "weighted_f1": 0.945
+      },
+      "hyperparameters": {
+        "C": 1.0,
+        "calibration_cv": 3,
+        "calibration_method": "sigmoid",
+        "loss": "squared_hinge"
+      },
+      "feature_schema": [
+        "TfidfVectorizer(word, ngram=(1,2), sublinear_tf=True)",
+        "TfidfVectorizer(char_wb, ngram=(3,6), sublinear_tf=True)"
+      ],
+      "is_active": true
+    }
+  ]
+}
