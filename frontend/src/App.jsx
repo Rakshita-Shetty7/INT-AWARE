@@ -8,9 +8,7 @@ import AttackersPage from './pages/AttackersPage';
 import AttackerDetailPage from './pages/AttackerDetailPage';
 import AlertsPage from './pages/AlertsPage';
 import AnalyticsPage from './pages/AnalyticsPage';
-import DeceptionPage from './pages/DeceptionPage';
 import ResearchPage from './pages/ResearchPage';
-import DocumentationPage from './pages/DocumentationPage';
 
 export default function App() {
   return (
@@ -24,10 +22,7 @@ export default function App() {
           <Route path="attackers/:sourceIp" element={<AttackerDetailPage />} />
           <Route path="alerts" element={<AlertsPage />} />
           <Route path="analytics" element={<AnalyticsPage />} />
-          <Route path="deception" element={<DeceptionPage />} />
           <Route path="research" element={<ResearchPage />} />
-          <Route path="docs" element={<DocumentationPage />} />
-          <Route path="documentation" element={<DocumentationPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>

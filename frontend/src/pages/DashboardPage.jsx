@@ -13,7 +13,6 @@ import {
   Wifi,
   Sparkles,
   Share2,
-  FlaskConical,
   TrendingUp,
   Cpu,
 } from 'lucide-react';
@@ -66,7 +65,7 @@ export default function DashboardPage() {
         throw new Error(statsRes.reason?.message || 'Failed to reach API server');
       }
     } catch (err) {
-      setError(err.message || 'Unable to connect to FastAPI deception backend.');
+      setError(err.message || 'Unable to connect to FastAPI backend.');
     } finally {
       if (!silent) setLoading(false);
     }
@@ -166,14 +165,14 @@ export default function DashboardPage() {
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
               <span className="text-xs font-mono font-bold text-cyan-400 tracking-wider uppercase">
-                CYBERSECURITY COMMAND CENTER & ADAPTIVE DECEPTION
+                CYBERSECURITY COMMAND CENTER & THREAT PROFILING
               </span>
             </div>
             <h2 className="text-lg font-bold text-slate-100 font-sans">
               Intent-Aware Threat Intelligence & Attacker Profiling Platform
             </h2>
             <p className="text-xs text-slate-400 max-w-2xl font-sans">
-              Ground-truth Cowrie honeypot telemetry with Markov transition modeling, ML drift surveillance, and zero-host deception containment.
+              Ground-truth Cowrie honeypot telemetry with Markov transition modeling, ML drift surveillance, and automated threat containment.
             </p>
           </div>
 
@@ -191,13 +190,6 @@ export default function DashboardPage() {
             >
               <Share2 className="w-3.5 h-3.5 text-cyan-400" />
               <span>Campaign Graph</span>
-            </Link>
-            <Link
-              to="/deception"
-              className="px-3.5 py-2 bg-[#162032] border border-[#23324f] hover:border-emerald-700/60 text-slate-200 rounded-lg text-xs font-mono flex items-center gap-2 transition-colors"
-            >
-              <FlaskConical className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Deception Lab</span>
             </Link>
           </div>
         </div>

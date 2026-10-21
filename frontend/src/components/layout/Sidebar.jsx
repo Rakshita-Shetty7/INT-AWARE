@@ -6,11 +6,7 @@ import {
   Users,
   AlertOctagon,
   BarChart3,
-  ShieldCheck,
   FlaskConical,
-  BookOpen,
-  ExternalLink,
-  Code2,
 } from 'lucide-react';
 
 const NAV_ITEMS = [
@@ -19,9 +15,7 @@ const NAV_ITEMS = [
   { path: '/attackers', label: 'Attacker Profiles', icon: Users },
   { path: '/alerts', label: 'Threat Alerts', icon: AlertOctagon },
   { path: '/analytics', label: 'Analytics', icon: BarChart3 },
-  { path: '/deception', label: 'Cyber Deception', icon: ShieldCheck },
   { path: '/research', label: 'Research Labs', icon: FlaskConical },
-  { path: '/documentation', label: 'Documentation', icon: BookOpen },
 ];
 
 export default function Sidebar() {
@@ -53,19 +47,7 @@ export default function Sidebar() {
       </div>
 
       {/* Footer Info */}
-      <div className="border-t border-[#1f293d] pt-4 space-y-2">
-        <a
-          href="/docs"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-between px-3 py-2 text-xs font-mono text-slate-400 hover:text-cyan-400 hover:bg-[#111726] rounded transition-colors"
-        >
-          <span className="flex items-center gap-2">
-            <Code2 className="w-3.5 h-3.5" />
-            FastAPI OpenAPI Docs
-          </span>
-          <ExternalLink className="w-3 h-3" />
-        </a>
+      <div className="border-t border-[#1f293d] pt-4">
         <div className="px-3 py-1 text-[10px] text-slate-500 font-mono">
           Vite + React 19 + Tailwind CSS
         </div>

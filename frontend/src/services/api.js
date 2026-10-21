@@ -65,23 +65,6 @@ export const api = {
   getCampaignGraph: () => apiClient.get('/analytics/campaign-graph'),
   testCommandDrift: (command) => apiClient.post('/analytics/drift/test-command', { command }),
 
-  // Adaptive Cyber Deception & Markov Transitions
-  getDeceptionPolicies: () => apiClient.get('/deception/policies'),
-  simulateDeception: (data) => apiClient.post('/deception/simulate', data),
-  getTransitionMatrix: () => apiClient.get('/deception/transitions/matrix'),
-  evaluateSequenceTransition: (data) => apiClient.post('/deception/transitions/evaluate', data),
-  getDeceptionBenchmark: () => apiClient.get('/deception/lab/benchmark'),
-  runDeceptionReplay: (commands = [], sessionId = 'exp-custom') =>
-    apiClient.post('/deception/lab/replay-experiment', { commands, session_id: sessionId }),
-
-  // Beelzebub Fleet Management, Honeytoken Registry & Caronte AI Analyst
-  getFleetSummary: () => apiClient.get('/deception/fleet/summary'),
-  getDecoys: () => apiClient.get('/deception/decoys'),
-  getDecoy: (decoyId) => apiClient.get(`/deception/decoys/${decoyId}`),
-  getHoneytokens: () => apiClient.get('/deception/honeytokens'),
-  tripHoneytoken: (tokenId) => apiClient.post(`/deception/honeytokens/${tokenId}/trip`),
-  runCaronteInvestigation: (data) => apiClient.post('/deception/caronte/investigate', data),
-
   // Evidence-First AI Security Copilot & Research Laboratories
   queryCopilot: (data) => apiClient.post('/research/copilot/query', data),
   getIndustrialInvariants: () => apiClient.get('/research/industrial/invariants'),

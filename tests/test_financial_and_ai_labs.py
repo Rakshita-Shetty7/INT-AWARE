@@ -2,10 +2,9 @@
 Financial Services and AI Services Security Laboratories Test Suite.
 
 Validates:
-  1. BeelzebubAdapter: Normalization of Go Beelzebub JSON events into NormalizedEvents.
-  2. FinancialSecurityLaboratory: Synthetic accounts, wire transfer fraud rules, canary token detection, forensic reporting.
-  3. AISecurityLaboratory: Prompt injection & jailbreak detection, MCP tool call authorization monitoring, RAG canary document traps.
-  4. REST API endpoints under /api/financial/* and /api/ai-security/*.
+  1. FinancialSecurityLaboratory: Synthetic accounts, wire transfer fraud rules, canary token detection, forensic reporting.
+  2. AISecurityLaboratory: Prompt injection & jailbreak detection, MCP tool call authorization monitoring, RAG canary document traps.
+  3. REST API endpoints under /api/financial/* and /api/ai-security/*.
 """
 
 import mongomock
@@ -18,54 +17,11 @@ from backend.app.research.ai_lab.models import MCPToolCall
 from backend.app.research.ai_lab.service import AISecurityLaboratory, ai_security_lab
 from backend.app.research.financial_lab.models import FinancialTransferRequest
 from backend.app.research.financial_lab.service import FinancialSecurityLaboratory, financial_security_lab
-from backend.app.services.beelzebub_adapter import BeelzebubAdapter, beelzebub_adapter
 from backend.app.services.persistence_service import PersistenceService
 
 
 # ---------------------------------------------------------------------------
-# 1. Beelzebub Honeypot Ingestion Adapter Tests
-# ---------------------------------------------------------------------------
-
-class TestBeelzebubAdapter:
-    """Verifies Beelzebub Go JSON event normalization and provenance mapping."""
-
-    def test_normalize_command_event(self):
-        raw_bz_event = {
-            "sessionID": "test_bz_session_99",
-            "sourceIp": "192.168.1.150",
-            "sourcePort": 52410,
-            "destPort": 2222,
-            "protocol": "ssh",
-            "command": "cat /etc/shadow",
-            "username": "root",
-            "password": "SecretPassword123",
-            "timestamp": "2026-10-17T12:00:00Z",
-        }
-        normalized = beelzebub_adapter.normalize(raw_bz_event)
-        assert normalized is not None
-        assert normalized.session_id == "bz_test_bz_session_99"
-        assert normalized.source_ip == "192.168.1.150"
-        assert normalized.command == "cat /etc/shadow"
-        assert normalized.event_type == "command_input"
-        assert normalized.raw_event["telemetry_source"] == "beelzebub"
-        assert normalized.raw_event["password"] == "[REDACTED]"
-
-    def test_normalize_auth_event(self):
-        raw_auth_event = {
-            "sessionID": "test_bz_session_100",
-            "sourceIp": "10.0.0.5",
-            "eventType": "login_attempt",
-            "status": "failed",
-            "username": "admin",
-            "password": "badpassword",
-        }
-        normalized = beelzebub_adapter.normalize(raw_auth_event)
-        assert normalized is not None
-        assert normalized.event_type == "login_failed"
-
-
-# ---------------------------------------------------------------------------
-# 2. Financial Services Security Laboratory Tests
+# 1. Financial Services Security Laboratory Tests
 # ---------------------------------------------------------------------------
 
 class TestFinancialSecurityLab:

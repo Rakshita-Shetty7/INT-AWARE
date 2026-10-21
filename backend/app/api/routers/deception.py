@@ -15,15 +15,6 @@ from backend.app.services.adaptive_deception_engine import (
     DeceptionDecision,
     adaptive_deception_engine,
 )
-from backend.app.services.beelzebub_fleet import (
-    DecoyService,
-    Honeytoken,
-    beelzebub_fleet_manager,
-)
-from backend.app.services.caronte_analyst import (
-    CaronteInvestigationReport,
-    caronte_analyst_engine,
-)
 from backend.app.services.sequence_transition_engine import (
     EMPIRICAL_TRANSITION_PRIORS,
     NextIntentPrediction,
@@ -129,73 +120,6 @@ def evaluate_sequence_transition(req: TransitionCheckRequest) -> SequenceTransit
         current_intent=req.current_intent,
         intent_history=req.intent_history,
         inter_command_delays=req.inter_command_delays,
-    )
-
-
-# ---------------------------------------------------------------------------
-# Beelzebub Fleet Management & Honeytoken Registry
-# ---------------------------------------------------------------------------
-
-class CaronteInvestigationRequest(BaseModel):
-    session_id: str = Field("sess-live-probe", description="Session identifier")
-    source_ip: str = Field("198.51.100.42", description="Attacker source IP")
-    commands: List[str] = Field(default_factory=list, description="Sequence of attacker commands executed")
-    intents: Optional[List[IntentCategory]] = None
-
-
-@router.get("/fleet/summary", summary="Get Beelzebub Fleet Infrastructure Summary")
-def get_fleet_summary() -> Dict[str, Any]:
-    """
-    Returns deployment metrics, protocol distribution, and honeytoken statistics across the decoy fleet.
-    """
-    return beelzebub_fleet_manager.get_fleet_summary()
-
-
-@router.get("/decoys", response_model=List[DecoyService], summary="List All Active Beelzebub Decoy Services")
-def list_decoys() -> List[DecoyService]:
-    """
-    Returns all configured low-code decoys across SSH, HTTP, TCP, Telnet, and MCP AI agent traps.
-    """
-    return beelzebub_fleet_manager.list_decoys()
-
-
-@router.get("/decoys/{decoy_id}", response_model=DecoyService, summary="Get Specific Decoy Service & YAML Config")
-def get_decoy(decoy_id: str) -> DecoyService:
-    decoy = beelzebub_fleet_manager.get_decoy(decoy_id)
-    if not decoy:
-        from fastapi import HTTPException
-        raise HTTPException(status_code=404, detail=f"Decoy service {decoy_id} not found")
-    return decoy
-
-
-@router.get("/honeytokens", response_model=List[Honeytoken], summary="List Honeytoken Traps & Canary Credentials")
-def list_honeytokens() -> List[Honeytoken]:
-    """
-    Returns deployed canary credentials (AWS keys, shadow hashes, DB URIs, RAG tokens) and tripwire states.
-    """
-    return beelzebub_fleet_manager.list_honeytokens()
-
-
-@router.post("/honeytokens/{token_id}/trip", response_model=Honeytoken, summary="Manually Trigger / Test Honeytoken Tripwire")
-def trip_honeytoken(token_id: str) -> Honeytoken:
-    tok = beelzebub_fleet_manager.record_token_trip(token_id)
-    if not tok:
-        from fastapi import HTTPException
-        raise HTTPException(status_code=404, detail=f"Honeytoken {token_id} not found")
-    return tok
-
-
-@router.post("/caronte/investigate", response_model=CaronteInvestigationReport, summary="Execute Caronte AI Threat Investigation")
-def run_caronte_investigation(req: CaronteInvestigationRequest) -> CaronteInvestigationReport:
-    """
-    Autonomous forensic analysis of an attacker session: MITRE ATT&CK mapping, IOC extraction,
-    attacker sophistication rating, and deception containment dossier.
-    """
-    return caronte_analyst_engine.investigate(
-        session_id=req.session_id,
-        source_ip=req.source_ip,
-        commands=req.commands,
-        intents=req.intents,
     )
 
 
