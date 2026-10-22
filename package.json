@@ -1,0 +1,11 @@
+{
+  "name": "intent-aware-deception-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Intent-Aware Deception System for Real-Time Attacker Profiling",
+  "scripts": {
+    "build": "npm --prefix website run build",
+    "dev": "npm --prefix website run dev",
+    "preview": "npm --prefix website run preview"
+  }
+}

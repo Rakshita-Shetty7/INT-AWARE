@@ -7,9 +7,40 @@ import asyncio
 from contextlib import asynccontextmanager
 import logging
 import os
+import sys
 import threading
-from fastapi import FastAPI
+import types
+from pathlib import Path
+from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
+
+# Self-resolving package anchor:
+# Ensures 'backend' and 'backend.app' exist in sys.modules and sys.path
+# regardless of whether the execution root is the repo root, backend/, or a serverless runtime (/var/task).
+_CURRENT_FILE = Path(__file__).resolve()
+_APP_DIR = _CURRENT_FILE.parent
+_BACKEND_DIR = _APP_DIR.parent
+_ROOT_DIR = _BACKEND_DIR.parent
+
+for _p in [str(_ROOT_DIR), str(_BACKEND_DIR), str(_APP_DIR)]:
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
+if "backend" not in sys.modules:
+    _backend_pkg = types.ModuleType("backend")
+    _backend_pkg.__path__ = [str(_BACKEND_DIR)]
+    _backend_pkg.__file__ = str(_BACKEND_DIR / "__init__.py")
+    sys.modules["backend"] = _backend_pkg
+
+if "backend.app" not in sys.modules:
+    if "app" in sys.modules:
+        sys.modules["backend.app"] = sys.modules["app"]
+    else:
+        try:
+            import app
+            sys.modules["backend.app"] = app
+        except ImportError:
+            pass
 
 from backend.app.api.routers import (
     ai_security_router,
@@ -157,3 +188,9 @@ def root():
         "ws_events": "/ws/events",
         "ws_alerts": "/ws/alerts"
     }
+
+
+@app.get("/favicon.ico", include_in_schema=False)
+def favicon():
+    return Response(status_code=204)
+
