@@ -122,6 +122,17 @@ class RiskEngine:
         details["clamped_score"] = clamped_score
         details["severity"] = severity.value
 
+        # 5. Record Gradient Boosting model prediction if present
+        if classification.gb_risk_score is not None:
+            details["ml_gradient_boosting_score"] = classification.gb_risk_score
+            details["ml_gradient_boosting_severity"] = classification.gb_severity
+            if classification.anomaly_score is not None:
+                details["ml_isolation_forest_anomaly_score"] = classification.anomaly_score
+                details["ml_isolation_forest_is_anomaly"] = classification.is_anomaly
+            if classification.rf_stage is not None:
+                details["ml_random_forest_stage"] = classification.rf_stage
+                details["ml_random_forest_stage_confidence"] = classification.rf_stage_confidence
+
         logger.info(
             "[RISK] session=%s score=%d severity=%s factors=%d",
             event.session_id,

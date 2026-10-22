@@ -1,31 +1,113 @@
 {
-  "updated_at": "2026-10-17T10:17:04.129905+00:00",
+  "updated_at": "2026-10-22T05:37:46.309742+00:00",
   "models": [
     {
       "model_id": "intaware_linear_svc_calibrated_v1",
       "version": "1.0.0",
       "model_family": "CalibratedClassifierCV(LinearSVC)",
       "artifact_path": "C:\\Users\\raksh\\OneDrive\\Desktop\\INT-AWARE\\backend\\app\\ml\\artifacts\\intent_classifier.joblib",
-      "artifact_sha256": "be96da92c2365cf5b8f4129df9101633e4a03ac3ca27a3c6924142a1dff069aa",
+      "artifact_sha256": "6f6bb956f6c83528e4da874050159918506baf6c72e8511e442e719eb99e0f95",
       "dataset_version": "v1.0-primary",
       "dataset_sha256": null,
-      "trained_at": "2026-10-17T10:17:04.128033Z",
+      "trained_at": "2026-10-22T05:37:46.307160Z",
       "primary_metrics": {
-        "accuracy": 0.9449,
-        "macro_f1": 0.9229,
-        "weighted_f1": 0.945
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0
       },
       "hyperparameters": {
-        "C": 1.0,
-        "calibration_cv": 3,
+        "C": 3.0,
+        "calibration_cv": 5,
         "calibration_method": "sigmoid",
         "loss": "squared_hinge"
       },
       "feature_schema": [
-        "TfidfVectorizer(word, ngram=(1,2), sublinear_tf=True)",
+        "TfidfVectorizer(word, ngram=(1,3), sublinear_tf=True)",
         "TfidfVectorizer(char_wb, ngram=(3,6), sublinear_tf=True)"
       ],
       "is_active": true
+    },
+    {
+      "model_id": "intaware_isolation_forest_v1",
+      "version": "1.0.0",
+      "model_family": "IsolationForest",
+      "artifact_path": "C:\\Users\\raksh\\OneDrive\\Desktop\\INT-AWARE\\backend\\app\\ml\\artifacts\\isolation_forest.joblib",
+      "artifact_sha256": "90f5a54f1b71d6b6316af01d3ea5c86273ebbf8cfe78c6ad6b33a63db0ec39ca",
+      "dataset_version": "v1.0-primary",
+      "dataset_sha256": null,
+      "trained_at": "2026-10-21T09:28:15.274907Z",
+      "primary_metrics": {
+        "accuracy": 0.997024,
+        "false_positive_rate": 0.0,
+        "true_positive_rate": 0.994048,
+        "true_positives": 167.0,
+        "true_negatives": 168.0,
+        "false_positives": 0.0,
+        "false_negatives": 1.0,
+        "test_samples": 336.0
+      },
+      "hyperparameters": {
+        "n_estimators": 300,
+        "contamination": 0.1329,
+        "calibrated_threshold": -0.4906
+      },
+      "feature_schema": [
+        "Dense structural command features (16-D)"
+      ],
+      "is_active": false
+    },
+    {
+      "model_id": "intaware_stage_random_forest_v1",
+      "version": "1.0.0",
+      "model_family": "RandomForestClassifier",
+      "artifact_path": "C:\\Users\\raksh\\OneDrive\\Desktop\\INT-AWARE\\backend\\app\\ml\\artifacts\\stage_random_forest.joblib",
+      "artifact_sha256": "864f59f50481c1bbc5d89a7c148b93201dd73f99ed3005151e92c0a7d2b8ea53",
+      "dataset_version": "v1.0-primary",
+      "dataset_sha256": null,
+      "trained_at": "2026-10-21T09:28:15.274917Z",
+      "primary_metrics": {
+        "accuracy": 0.992722,
+        "macro_f1": 0.992758,
+        "macro_precision": 0.992592,
+        "macro_recall": 0.992947,
+        "weighted_f1": 0.992747,
+        "test_samples": 1374.0
+      },
+      "hyperparameters": {
+        "n_estimators": 120,
+        "max_depth": "None",
+        "class_weight": "balanced"
+      },
+      "feature_schema": [
+        "TfidfVectorizer(word, 1-3)",
+        "TfidfVectorizer(char_wb, 3-6)"
+      ],
+      "is_active": false
+    },
+    {
+      "model_id": "intaware_risk_gradient_boosting_v1",
+      "version": "1.0.0",
+      "model_family": "HistGradientBoostingRegressor",
+      "artifact_path": "C:\\Users\\raksh\\OneDrive\\Desktop\\INT-AWARE\\backend\\app\\ml\\artifacts\\risk_gradient_boosting.joblib",
+      "artifact_sha256": "7b2b3483f43a09e7b0cc4834ff58d537bff56d671807431c2eb90fe446ff3d7b",
+      "dataset_version": "v1.0-primary",
+      "dataset_sha256": null,
+      "trained_at": "2026-10-21T09:28:15.274924Z",
+      "primary_metrics": {
+        "mean_absolute_error": 3.1611,
+        "r2_score": 0.8915,
+        "severity_accuracy": 0.885007,
+        "test_samples": 1374.0
+      },
+      "hyperparameters": {
+        "max_iter": 150,
+        "learning_rate": 0.08,
+        "max_depth": 6
+      },
+      "feature_schema": [
+        "Structural command features (16-D) + Intent onehot (10-D) + Session context (4-D)"
+      ],
+      "is_active": false
     }
   ]
 }

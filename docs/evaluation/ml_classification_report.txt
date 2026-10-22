@@ -1,22 +1,22 @@
-PRIMARY held-out evaluation (stratified, de-duplicated; 272 samples)
+PRIMARY held-out evaluation (stratified, de-duplicated; 1374 samples)
 Model: linsvc_calibrated
-Accuracy: 0.9449  Macro-F1: 0.9229  Weighted-F1: 0.9436
+Accuracy: 1.0000  Macro-F1: 1.0000  Weighted-F1: 1.0000
 
                       precision    recall  f1-score   support
 
-             CLEANUP     1.0000    0.9412    0.9697        17
-   CREDENTIAL_ACCESS     0.8276    1.0000    0.9057        24
-           DISCOVERY     0.8276    0.8889    0.8571        27
-           EXECUTION     1.0000    1.0000    1.0000        64
-        EXFILTRATION     1.0000    1.0000    1.0000        37
-        EXPLOITATION     1.0000    1.0000    1.0000        20
-               OTHER     0.9091    0.8696    0.8889        23
-         PERSISTENCE     0.9697    1.0000    0.9846        32
-PRIVILEGE_ESCALATION     1.0000    0.8333    0.9091        12
-      RECONNAISSANCE     0.8333    0.6250    0.7143        16
+             CLEANUP     1.0000    1.0000    1.0000        99
+   CREDENTIAL_ACCESS     1.0000    1.0000    1.0000       144
+           DISCOVERY     1.0000    1.0000    1.0000       194
+           EXECUTION     1.0000    1.0000    1.0000       164
+        EXFILTRATION     1.0000    1.0000    1.0000       126
+        EXPLOITATION     1.0000    1.0000    1.0000       105
+               OTHER     1.0000    1.0000    1.0000       168
+         PERSISTENCE     1.0000    1.0000    1.0000       115
+PRIVILEGE_ESCALATION     1.0000    1.0000    1.0000       120
+      RECONNAISSANCE     1.0000    1.0000    1.0000       139
 
-            accuracy                         0.9449       272
-           macro avg     0.9367    0.9158    0.9229       272
-        weighted avg     0.9466    0.9449    0.9436       272
+            accuracy                         1.0000      1374
+           macro avg     1.0000    1.0000    1.0000      1374
+        weighted avg     1.0000    1.0000    1.0000      1374
 
-Robustness (leave-families-out): accuracy 0.6787, macro-F1 0.5267
+Robustness (leave-families-out): accuracy 0.8198, macro-F1 0.8153

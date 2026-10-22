@@ -15,7 +15,7 @@ export const QuickstartPage: React.FC = () => {
           60-Second Quickstart Guide
         </h1>
         <p className="text-slate-400 text-sm leading-relaxed mt-2">
-          Spin up the complete INT-AWARE microservices stack with Docker Compose and stream genuine attack traffic in three commands.
+          Spin up the complete deception microservices stack with Docker Compose and stream genuine attack traffic in three commands.
         </p>
       </div>
 

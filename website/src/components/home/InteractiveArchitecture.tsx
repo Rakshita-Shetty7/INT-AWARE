@@ -61,7 +61,7 @@ const ARCH_LAYERS: ArchLayer[] = [
   {
     id: 'ml_hybrid',
     name: '3. Hybrid ML & Rule Intelligence',
-    badge: '94.49% Real Test Accuracy',
+    badge: 'Calibrated LinearSVC · 10 Classes',
     icon: Cpu,
     color: 'text-indigo-400',
     codePath: 'backend/app/ml/classifier.py & rule_engine.py',

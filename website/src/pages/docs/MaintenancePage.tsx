@@ -26,7 +26,7 @@ export const MaintenancePage: React.FC = () => {
             1. Stopping the Application Safely (Preserving All Data)
           </h2>
           <p className="text-xs text-slate-300 leading-relaxed mt-2">
-            To stop all INT-AWARE services without losing any recorded sessions, events, or alerts:
+            To stop all platform services without losing any recorded sessions, events, or alerts:
           </p>
           <CodeBlock
             code="docker compose down"

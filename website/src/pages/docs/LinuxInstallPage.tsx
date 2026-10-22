@@ -98,11 +98,11 @@ docker --version && docker compose version`}
             Clone the repository and copy the environment template:
           </p>
           <CodeBlock
-            code={`git clone https://github.com/Rakshita-Shetty7/INT-AWARE.git
-cd INT-AWARE
+            code={`# Navigate to project directory:
+cd intent-aware-deception
 cp .env.example .env`}
             language="bash"
-            title="Bash - Clone & Configure"
+            title="Bash - Configure Environment"
           />
         </div>
 

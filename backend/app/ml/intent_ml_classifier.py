@@ -61,8 +61,9 @@ class MLIntentClassifier:
                 bundle = joblib.load(self.model_path)
                 self._pipeline = bundle["pipeline"]
                 meta = bundle.get("metadata", {})
+                from backend.app.ml.labels import INTENT_TO_STAGE
                 self._model_name = meta.get("model_name", "ml_pipeline")
-                self._intent_to_stage = meta.get("intent_to_stage", {})
+                self._intent_to_stage = meta.get("intent_to_stage") or INTENT_TO_STAGE
                 self._classes = list(getattr(self._pipeline, "classes_", []))
 
                 # Extract word vocabulary for out-of-vocabulary (OOV) novelty calculation
@@ -70,8 +71,13 @@ class MLIntentClassifier:
                     features_step = getattr(self._pipeline, "named_steps", {}).get("features")
                     if features_step and hasattr(features_step, "transformer_list"):
                         for name, trans in features_step.transformer_list:
-                            if name == "word" and hasattr(trans, "vocabulary_") and trans.vocabulary_:
-                                self._word_vocab = set(trans.vocabulary_.keys())
+                            if name == "word":
+                                if hasattr(trans, "vocabulary_") and trans.vocabulary_:
+                                    self._word_vocab = set(trans.vocabulary_.keys())
+                                elif hasattr(trans, "named_steps") and "tfidf" in trans.named_steps:
+                                    tfidf_step = trans.named_steps["tfidf"]
+                                    if hasattr(tfidf_step, "vocabulary_") and tfidf_step.vocabulary_:
+                                        self._word_vocab = set(tfidf_step.vocabulary_.keys())
                 except Exception as ve:
                     logger.debug("[ML] Could not cache word vocabulary for OOV scoring: %s", ve)
 

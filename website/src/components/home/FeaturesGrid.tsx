@@ -28,7 +28,7 @@ const FEATURES = [
     color: 'text-sky-400',
     borderColor: 'hover:border-sky-500/50',
     title: 'Calibrated Intent ML Pipeline',
-    subtitle: '94.49% Real Held-Out Test Accuracy',
+    subtitle: 'Calibrated LinearSVC · 10 Intent Classes',
     description:
       'Deploys a calibrated LinearSVC classifier with TF-IDF character and word n-grams across 10 attacker intent categories (Reconnaissance to Exfiltration), complete with Shannon entropy confidence scoring.',
     badge: 'Machine Learning',

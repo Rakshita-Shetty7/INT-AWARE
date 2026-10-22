@@ -21,10 +21,10 @@ export const DocsOverviewPage: React.FC = () => {
           Documentation Portal
         </div>
         <h1 className="text-3xl font-extrabold text-white tracking-tight">
-          INT-AWARE Platform Documentation
+          Platform Technical Documentation
         </h1>
         <p className="text-slate-400 text-sm leading-relaxed mt-2">
-          Welcome to the comprehensive installation, architecture, and developer documentation for <strong>INT-AWARE: Intent-Aware Deception System for Real-Time Attacker Profiling</strong>.
+          Welcome to the comprehensive installation, architecture, and developer documentation for the <strong>Intent-Aware Deception System for Real-Time Attacker Profiling</strong>.
         </p>
       </div>
 
@@ -41,7 +41,7 @@ export const DocsOverviewPage: React.FC = () => {
           Platform Architecture Summary
         </h2>
         <p className="text-xs text-slate-300 leading-relaxed">
-          INT-AWARE is a research-grade cybersecurity cyber deception system. It deploys an emulated, containerized SSH honeypot (Cowrie), captures attacker interactions with zero host execution, classifies shell commands across 10 MITRE ATT&CK-aligned intent categories using a calibrated LinearSVC ML pipeline, models sequence transitions using Markov chains, and streams live threat intelligence to a real-time SOC dashboard.
+          The platform is an intent-aware cyber deception system. It deploys an emulated, containerized SSH honeypot (Cowrie), captures attacker interactions with zero host execution, classifies shell commands across 10 MITRE ATT&CK-aligned intent categories using a calibrated LinearSVC ML pipeline, models sequence transitions using Markov chains, and streams live threat intelligence to a real-time SOC dashboard.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">

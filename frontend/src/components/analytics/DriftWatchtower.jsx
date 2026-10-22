@@ -72,10 +72,14 @@ export default function DriftWatchtower() {
         return 'text-amber-400 bg-amber-950/60 border-amber-800/60';
       case 'SIGNIFICANT_DRIFT':
         return 'text-rose-400 bg-rose-950/60 border-rose-800/60';
+      case 'INSUFFICIENT_DATA':
+        return 'text-amber-400 bg-amber-950/60 border-amber-800/60';
       default:
         return 'text-cyan-400 bg-cyan-950/60 border-cyan-800/60';
     }
   };
+
+  const isAccumulating = driftReport.drift_status === 'INSUFFICIENT_DATA';
 
   return (
     <div className="space-y-6">
@@ -86,20 +90,24 @@ export default function DriftWatchtower() {
           <span className="text-[11px] font-mono text-slate-400 uppercase">Population Stability Index</span>
           <div className="flex items-center gap-2">
             <span className="text-2xl font-bold font-mono text-slate-100">
-              {driftReport.psi_score.toFixed(3)}
+              {isAccumulating ? 'Accumulating' : driftReport.psi_score.toFixed(3)}
             </span>
             <span className={`text-[10px] font-mono px-2 py-0.5 rounded border ${getStatusColor(driftReport.drift_status)}`}>
               {driftReport.drift_status}
             </span>
           </div>
-          <p className="text-[11px] text-slate-400 font-mono">Thresholds: &lt;0.10 Stable | &gt;0.25 Drift</p>
+          <p className="text-[11px] text-slate-400 font-mono">
+            {isAccumulating
+              ? `Requires ≥ 20 events (${driftReport.window_size}/20 observed)`
+              : 'Thresholds: <0.10 Stable | >0.25 Drift'}
+          </p>
         </div>
 
         {/* Mean Prediction Entropy */}
         <div className="p-4 bg-[#111726] border border-[#1f293d] rounded-xl space-y-1">
           <span className="text-[11px] font-mono text-slate-400 uppercase">Mean Shannon Entropy</span>
           <div className="text-2xl font-bold font-mono text-cyan-400">
-            {driftReport.mean_prediction_entropy} <span className="text-xs text-slate-500 font-normal">bits</span>
+            {isAccumulating ? '0.00' : driftReport.mean_prediction_entropy} <span className="text-xs text-slate-500 font-normal">bits</span>
           </div>
           <p className="text-[11px] text-slate-400 font-mono">Sliding window average model uncertainty</p>
         </div>
@@ -108,7 +116,7 @@ export default function DriftWatchtower() {
         <div className="p-4 bg-[#111726] border border-[#1f293d] rounded-xl space-y-1">
           <span className="text-[11px] font-mono text-slate-400 uppercase">Novelty / OOD Rate</span>
           <div className="text-2xl font-bold font-mono text-purple-400">
-            {(driftReport.novelty_rate * 100).toFixed(1)}%
+            {isAccumulating ? '0.0%' : `${(driftReport.novelty_rate * 100).toFixed(1)}%`}
           </div>
           <p className="text-[11px] text-slate-400 font-mono">Unseen token vocabulary frequency</p>
         </div>
@@ -119,7 +127,7 @@ export default function DriftWatchtower() {
           <div className="text-2xl font-bold font-mono text-amber-400">
             {driftReport.window_size} <span className="text-xs text-slate-500 font-normal">events</span>
           </div>
-          <p className="text-[11px] text-slate-400 font-mono">Bounded FIFO buffer (max 500)</p>
+          <p className="text-[11px] text-slate-400 font-mono">Bounded FIFO buffer (min 20, max 500)</p>
         </div>
       </div>
 
@@ -137,6 +145,7 @@ export default function DriftWatchtower() {
         <button
           onClick={fetchDrift}
           className="p-1.5 bg-[#162032] border border-[#23324f] hover:border-cyan-600 rounded text-slate-300"
+          title="Refresh drift report"
         >
           <RotateCcw className="w-3.5 h-3.5" />
         </button>

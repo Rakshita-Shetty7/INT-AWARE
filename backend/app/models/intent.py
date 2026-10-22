@@ -122,4 +122,11 @@ class HybridClassification(BaseModel):
     uncertainty_score: float = Field(0.0, ge=0.0, le=1.0, description="Epistemic uncertainty score of the consolidated classification")
     is_novel: bool = Field(False, description="Whether the command is flagged as out-of-distribution/novel")
     should_abstain: bool = Field(False, description="Whether the system recommends human/escalated analyst review")
+    # Multi-model platform extensions
+    anomaly_score: Optional[float] = Field(None, description="Isolation Forest anomaly score (0.0 to 1.0)")
+    is_anomaly: Optional[bool] = Field(None, description="Isolation Forest anomaly flag")
+    rf_stage: Optional[str] = Field(None, description="Random Forest predicted intrusion stage")
+    rf_stage_confidence: Optional[float] = Field(None, description="Random Forest intrusion stage confidence")
+    gb_risk_score: Optional[int] = Field(None, description="Gradient Boosting predicted threat risk score (0 to 100)")
+    gb_severity: Optional[str] = Field(None, description="Gradient Boosting mapped threat severity")
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc), description="UTC timestamp of classification")

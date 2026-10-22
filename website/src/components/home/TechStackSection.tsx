@@ -82,7 +82,7 @@ export const TechStackSection: React.FC = () => {
             Built on Battle-Tested Open Source Technologies
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            Every layer of INT-AWARE is built with modern, performant, and secure libraries. Zero proprietary lock-in.
+            Every layer of the platform is built with modern, performant, and secure open-source libraries. Zero proprietary lock-in.
           </p>
         </div>
 

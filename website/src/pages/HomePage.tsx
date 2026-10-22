@@ -5,6 +5,7 @@ import { Hero } from '../components/home/Hero';
 import { ProblemSolution } from '../components/home/ProblemSolution';
 import { FeaturesGrid } from '../components/home/FeaturesGrid';
 import { InteractiveArchitecture } from '../components/home/InteractiveArchitecture';
+import { ProjectDemoSection } from '../components/home/ProjectDemoSection';
 import { LiveMetricsHonesty } from '../components/home/LiveMetricsHonesty';
 import { TechStackSection } from '../components/home/TechStackSection';
 import { QuickstartPreview } from '../components/home/QuickstartPreview';
@@ -18,6 +19,7 @@ export const HomePage: React.FC = () => {
         <ProblemSolution />
         <FeaturesGrid />
         <InteractiveArchitecture />
+        <ProjectDemoSection />
         <LiveMetricsHonesty />
         <TechStackSection />
         <QuickstartPreview />

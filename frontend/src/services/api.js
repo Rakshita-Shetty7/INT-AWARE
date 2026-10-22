@@ -4,7 +4,7 @@ import axios from 'axios';
  * Centralized API Client for the Intent-Aware Deception System REST API.
  */
 const apiClient = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
   timeout: 30000, // 30s timeout for AI analysis calls
   headers: {
     'Content-Type': 'application/json',

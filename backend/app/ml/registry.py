@@ -145,6 +145,17 @@ class ModelRegistry:
             return True, f"Integrity verified (SHA-256: {current_sha[:16]}...)"
         return False, f"Hash mismatch: expected {active.artifact_sha256[:16]}..., found {current_sha[:16]}..."
 
+    def verify_all_artifacts_integrity(self) -> Dict[str, Tuple[bool, str]]:
+        """Verifies on-disk integrity for all cataloged models against their registered SHA-256."""
+        results = {}
+        for m_id, meta in self._models.items():
+            current_sha = self._compute_sha256(Path(meta.artifact_path))
+            if current_sha == meta.artifact_sha256:
+                results[m_id] = (True, f"Integrity verified (SHA-256: {current_sha[:16]}...)")
+            else:
+                results[m_id] = (False, f"Hash mismatch: expected {meta.artifact_sha256[:16]}..., found {current_sha[:16]}...")
+        return results
+
     def list_models(self) -> List[ModelMetadata]:
         """Returns list of all cataloged models."""
         return list(self._models.values())

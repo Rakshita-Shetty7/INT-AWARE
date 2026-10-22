@@ -28,26 +28,65 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Tuple
 
 RANDOM_SEED = 1337
-MAX_VARIANTS_PER_FAMILY = 14  # cap combinatorial expansion per template
+MAX_VARIANTS_PER_FAMILY = 35  # cap combinatorial expansion per template
 
 
 # --------------------------------------------------------------------------- #
 # Placeholder value pools (substituted into templates)                        #
 # --------------------------------------------------------------------------- #
 POOLS: Dict[str, List[str]] = {
-    "IP": ["10.0.0.5", "192.168.1.10", "172.16.0.9", "45.33.12.8", "203.0.113.7", "185.220.101.4", "8.8.4.4"],
-    "PORT": ["4444", "1337", "8080", "9001", "53", "443", "31337", "12345"],
-    "HOST": ["evil.example.com", "attacker.test", "c2.example.net", "mirror.badhost.io", "pastebin.example", "cdn.malware.test"],
-    "PAYLOAD": ["payload", "x", "bot", "kdevtmpfsi", "cryptominer", "shell", "malware", "a", "xmrig"],
-    "TMP": ["/tmp", "/dev/shm", "/var/tmp", "/run/user/0"],
-    "SENSDIR": ["/etc", "/home", "/var/log", "/root", "/opt/app", "/var/www", "/srv"],
-    "USER": ["root", "admin", "www-data", "postgres", "deploy", "test", "ubuntu"],
-    "PKG": ["nmap", "masscan", "gcc", "python3", "tcpdump", "netcat", "socat", "john"],
-    "SVC": ["ssh", "apache2", "nginx", "cron", "mysql", "docker"],
-    "FLAGS": ["-la", "-al", "-lah", "-lt", "-R", "-a"],
-    "LOG": ["auth.log", "syslog", "messages", "secure", "wtmp", "btmp"],
-    "CVE": ["CVE-2021-4034", "CVE-2022-0847", "CVE-2021-3156", "CVE-2016-5195", "CVE-2014-6271", "CVE-2021-44228"],
-    "EXPBIN": ["pwnkit", "dirtycow", "dcow", "overlayfs", "polkit-pwn", "nginxjail"],
+    "IP": [
+        "10.0.0.5", "192.168.1.10", "172.16.0.9", "45.33.12.8", "203.0.113.7",
+        "185.220.101.4", "8.8.4.4", "198.51.100.42", "10.10.10.100", "192.168.0.105",
+        "172.20.1.50", "192.168.100.25", "10.0.2.15", "194.26.29.112", "91.240.118.172",
+    ],
+    "PORT": [
+        "4444", "1337", "8080", "9001", "53", "443", "31337", "12345",
+        "8888", "9999", "2222", "80", "8443", "5555", "7777", "6667",
+    ],
+    "HOST": [
+        "evil.example.com", "attacker.test", "c2.example.net", "mirror.badhost.io",
+        "pastebin.example", "cdn.malware.test", "update.security-check.net",
+        "transfer.sh", "webhook.site", "attacker-c2.darknet", "drop.evilcorp.biz",
+    ],
+    "PAYLOAD": [
+        "payload", "x", "bot", "kdevtmpfsi", "cryptominer", "shell", "malware", "a",
+        "xmrig", "dropper", "agent", "rootkit", "sysupdate", "kinsing", "mirai",
+    ],
+    "TMP": [
+        "/tmp", "/dev/shm", "/var/tmp", "/run/user/0", "/tmp/.x", "/dev/shm/.cache", "/var/tmp/.lock",
+    ],
+    "SENSDIR": [
+        "/etc", "/home", "/var/log", "/root", "/opt/app", "/var/www", "/srv",
+        "/etc/pam.d", "/etc/nginx", "/var/backups", "/etc/ssh",
+    ],
+    "USER": [
+        "root", "admin", "www-data", "postgres", "deploy", "test", "ubuntu",
+        "sysadmin", "developer", "oracle", "jenkins",
+    ],
+    "PKG": [
+        "nmap", "masscan", "gcc", "python3", "tcpdump", "netcat", "socat", "john",
+        "tshark", "curl", "wget", "git", "hydra",
+    ],
+    "SVC": [
+        "ssh", "apache2", "nginx", "cron", "mysql", "docker", "rsyslog",
+        "auditd", "sshd", "named", "redis", "postgresql",
+    ],
+    "FLAGS": [
+        "-la", "-al", "-lah", "-lt", "-R", "-a", "-lh", "-lart", "-latr", "-1", "-A", "-h",
+    ],
+    "LOG": [
+        "auth.log", "syslog", "messages", "secure", "wtmp", "btmp",
+        "daemon.log", "audit/audit.log", "nginx/access.log", "cron.log",
+    ],
+    "CVE": [
+        "CVE-2021-4034", "CVE-2022-0847", "CVE-2021-3156", "CVE-2016-5195",
+        "CVE-2014-6271", "CVE-2021-44228", "CVE-2024-1086", "CVE-2024-6387",
+    ],
+    "EXPBIN": [
+        "pwnkit", "dirtycow", "dcow", "overlayfs", "polkit-pwn", "nginxjail",
+        "baron_samedit", "kernel_pwn", "looney_tunables",
+    ],
 }
 
 
@@ -338,28 +377,75 @@ FAMILIES: List[Family] = [
 ]
 
 
+SHELL_WRAPPERS: List[str] = [
+    "{cmd}",
+    "{cmd} 2>/dev/null",
+    "{cmd} 2>&1",
+    "{cmd} | head -n 10",
+    "{cmd} | head -n 5",
+    "{cmd} | tail -n 10",
+    "{cmd} | tail -n 5",
+    "{cmd} | more",
+    "{cmd} | less",
+    "{cmd} | tr -d '\\r'",
+    "nohup {cmd} &",
+    "{cmd} ; echo done",
+    "test -e / && {cmd}",
+    "/bin/{cmd}",
+    "/usr/bin/{cmd}",
+]
+
+SHELL_BUILTINS = {"set", "cd", "alias", "exit", "history", "builtin", "shopt", "export", "echo"}
+
+
 def _expand_family(fam: Family, rng: random.Random) -> List[str]:
-    """Expands one family into a bounded, de-duplicated list of command variants."""
-    if fam.variants and not fam.template:
-        return list(dict.fromkeys(fam.variants))
+    """Expands one family into a bounded, de-duplicated list of realistic command variants."""
+    base_cmds: List[str] = []
 
-    template = fam.template
-    used_keys = [k for k in POOLS if "{" + k + "}" in template]
-    if not used_keys:
-        return [template]
+    if fam.template:
+        template = fam.template
+        used_keys = [k for k in POOLS if "{" + k + "}" in template]
+        if used_keys:
+            pools = [POOLS[k] for k in used_keys]
+            combos = list(itertools.product(*pools))
+            rng.shuffle(combos)
+            for combo in combos[:30]:
+                cmd = template
+                for k, v in zip(used_keys, combo):
+                    cmd = cmd.replace("{" + k + "}", v)
+                base_cmds.append(cmd)
+        else:
+            base_cmds.append(template)
 
-    pools = [POOLS[k] for k in used_keys]
-    combos = list(itertools.product(*pools))
-    rng.shuffle(combos)
-    combos = combos[:MAX_VARIANTS_PER_FAMILY]
+    if fam.variants:
+        for v in fam.variants:
+            if "{IP}" in v:
+                for ip in POOLS["IP"][:5]:
+                    base_cmds.append(v.replace("{IP}", ip))
+            else:
+                base_cmds.append(v)
 
-    out: List[str] = []
-    for combo in combos:
-        cmd = template
-        for k, v in zip(used_keys, combo):
-            cmd = cmd.replace("{" + k + "}", v)
-        out.append(cmd)
-    return list(dict.fromkeys(out))
+    if not base_cmds and fam.template:
+        base_cmds.append(fam.template)
+
+    variants: List[str] = []
+    for bc in base_cmds:
+        for w in SHELL_WRAPPERS:
+            if "2>" in bc and "2>" in w:
+                continue
+            if "|" in bc and "|" in w:
+                continue
+            if ("/bin/" in bc or "/usr/bin/" in bc) and ("/bin/" in w or "/usr/bin/" in w):
+                continue
+            if ("/bin/" in w or "/usr/bin/" in w):
+                if " " in bc or "/" in bc or bc.strip() in SHELL_BUILTINS:
+                    continue
+            wrapped = w.format(cmd=bc).strip()
+            variants.append(wrapped)
+
+    rng.shuffle(variants)
+    unique_variants = list(dict.fromkeys(variants))
+    return unique_variants[:MAX_VARIANTS_PER_FAMILY]
 
 
 def build_dataset() -> Tuple[List[str], List[str], List[str]]:

@@ -14,6 +14,8 @@ import {
   GitPullRequest,
   Search,
   CheckCircle,
+  BarChart3,
+  Globe,
 } from 'lucide-react';
 
 interface DocsSidebarProps {
@@ -39,6 +41,7 @@ export const DOC_SECTIONS: DocSection[] = [
       { path: '/docs', label: 'Documentation Overview', icon: BookOpen },
       { path: '/docs/quickstart', label: '60-Second Quickstart', icon: Zap, badge: 'Fastest' },
       { path: '/docs/architecture', label: 'Architecture & Pipeline', icon: Layers },
+      { path: '/docs/model-performance', label: 'Model Performance & Testing', icon: BarChart3, badge: 'Verified' },
     ],
   },
   {
@@ -51,10 +54,11 @@ export const DOC_SECTIONS: DocSection[] = [
     ],
   },
   {
-    title: 'Configuration & Services',
+    title: 'Configuration & Deployment',
     items: [
       { path: '/docs/configuration/env-vars', label: 'Environment Variables', icon: Settings },
       { path: '/docs/configuration/docker-services', label: 'Docker Compose Topology', icon: Container },
+      { path: '/docs/configuration/vercel-deployment', label: 'Vercel Deployment Guide', icon: Globe, badge: 'Deployment' },
     ],
   },
   {

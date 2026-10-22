@@ -57,7 +57,7 @@ export const DocsLayout: React.FC = () => {
           {/* Breadcrumbs */}
           <div className="flex items-center gap-2 text-xs font-mono text-slate-400 mb-6 pb-3 border-b border-slate-800/60">
             <Link to="/" className="hover:text-cyan-400 transition-colors">
-              INT-AWARE
+              Home
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
             <Link to="/docs" className="hover:text-cyan-400 transition-colors">

@@ -12,6 +12,8 @@ import { ManualInstallPage } from './pages/docs/ManualInstallPage';
 import { EnvVarsPage } from './pages/docs/EnvVarsPage';
 import { DockerServicesPage } from './pages/docs/DockerServicesPage';
 import { ApiReferencePage } from './pages/docs/ApiReferencePage';
+import { ModelPerformanceDocsPage } from './pages/docs/ModelPerformanceDocsPage';
+import { VercelDeploymentPage } from './pages/docs/VercelDeploymentPage';
 import { TroubleshootingPage } from './pages/docs/TroubleshootingPage';
 import { MaintenancePage } from './pages/docs/MaintenancePage';
 import { ContributingPage } from './pages/docs/ContributingPage';
@@ -38,6 +40,10 @@ export default function App() {
           {/* Configuration & Topology */}
           <Route path="configuration/env-vars" element={<EnvVarsPage />} />
           <Route path="configuration/docker-services" element={<DockerServicesPage />} />
+          <Route path="configuration/vercel-deployment" element={<VercelDeploymentPage />} />
+
+          {/* Model Performance & Empirical Testing */}
+          <Route path="model-performance" element={<ModelPerformanceDocsPage />} />
 
           {/* API Reference */}
           <Route path="api" element={<ApiReferencePage />} />

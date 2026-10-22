@@ -30,6 +30,9 @@ from backend.app.models.intent import (
     IntentCategory,
 )
 from backend.app.ml.intent_ml_classifier import MLIntentClassifier, ml_intent_classifier
+from backend.app.ml.anomaly_detector import CowrieAnomalyDetector, cowrie_anomaly_detector
+from backend.app.ml.stage_classifier import StageRandomForestClassifier, stage_random_forest_classifier
+from backend.app.ml.risk_predictor import GradientBoostingRiskPredictor, gradient_boosting_risk_predictor
 from backend.app.services.gemini_classifier import GeminiClassifier
 from backend.app.services.rule_classifier import RuleClassifier
 
@@ -161,6 +164,34 @@ class HybridClassifier:
             uncertainty = round(float(min(1.0, max(1.0 - final_conf, novelty_contrib))), 4)
             should_abstain = bool(is_novel or (ml_result and ml_result.should_abstain) or final_conf < 0.35)
 
+        # Multi-model platform extensions (Isolation Forest, Random Forest, Gradient Boosting)
+        anomaly_score = None
+        is_anomaly = None
+        rf_stage = None
+        rf_stage_conf = None
+        gb_risk = None
+        gb_sev = None
+
+        if has_command:
+            anom_res = cowrie_anomaly_detector.score_command(event.command)
+            anomaly_score = anom_res.get("anomaly_score")
+            is_anomaly = anom_res.get("is_anomaly")
+
+            stage_res = stage_random_forest_classifier.classify_stage(event.command)
+            rf_stage = stage_res.get("stage")
+            rf_stage_conf = stage_res.get("confidence")
+
+            intent_str = final_intent.value if hasattr(final_intent, "value") else str(final_intent)
+            risk_res = gradient_boosting_risk_predictor.predict_risk(
+                cmd=event.command,
+                intent=intent_str,
+                session_command_count=session_features.command_count if session_features else 1,
+                failed_logins=session_features.login_failed_count if session_features else 0,
+                session_duration_s=session_features.duration_seconds if session_features else 0.0,
+            )
+            gb_risk = risk_res.get("risk_score")
+            gb_sev = risk_res.get("severity")
+
         classification = HybridClassification(
             intent=final_intent,
             attack_stage=final_stage,
@@ -178,6 +209,12 @@ class HybridClassifier:
             uncertainty_score=uncertainty,
             is_novel=is_novel,
             should_abstain=should_abstain,
+            anomaly_score=anomaly_score,
+            is_anomaly=is_anomaly,
+            rf_stage=rf_stage,
+            rf_stage_confidence=rf_stage_conf,
+            gb_risk_score=gb_risk,
+            gb_severity=gb_sev,
             timestamp=datetime.now(timezone.utc),
         )
 

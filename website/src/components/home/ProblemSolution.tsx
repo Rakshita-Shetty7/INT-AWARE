@@ -13,7 +13,7 @@ export const ProblemSolution: React.FC = () => {
             From Passive Log Traps to Active Attacker Profiling
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            Legacy honeypots act as passive log collectors that drown security teams in unranked command dumps. INT-AWARE transforms telemetry into intent-conditioned threat intelligence.
+            Legacy honeypots act as passive log collectors that drown security teams in unranked command dumps. Our deception architecture transforms telemetry into intent-conditioned threat intelligence.
           </p>
         </div>
 
@@ -60,7 +60,7 @@ export const ProblemSolution: React.FC = () => {
             </div>
           </div>
 
-          {/* INT-AWARE System */}
+          {/* Intent-Aware Deception System */}
           <div className="rounded-2xl p-6 sm:p-8 bg-[#0a1224] border border-cyan-800/50 shadow-2xl space-y-6 flex flex-col justify-between glow-cyan">
             <div className="space-y-4">
               <div className="flex items-center gap-3">
@@ -68,7 +68,7 @@ export const ProblemSolution: React.FC = () => {
                   <CheckCircle2 className="w-5 h-5 text-cyan-400" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white">INT-AWARE Solution</h3>
+                  <h3 className="text-lg font-bold text-white">Intent-Aware Solution</h3>
                   <p className="text-xs font-mono text-cyan-400">Real-Time Intent Profiling & Machine Learning</p>
                 </div>
               </div>
@@ -80,7 +80,7 @@ export const ProblemSolution: React.FC = () => {
               <ul className="space-y-3 text-sm text-slate-200">
                 <li className="flex items-start gap-2.5">
                   <span className="text-cyan-400 font-bold mt-0.5">✓</span>
-                  <span><strong>Calibrated Intent Classification:</strong> Calibrated LinearSVC + TF-IDF classifies commands into 10 MITRE-aligned intent categories with <strong>94.49% real held-out accuracy</strong>.</span>
+                  <span><strong>Calibrated Intent Classification:</strong> Calibrated LinearSVC + TF-IDF classifies commands into 10 MITRE-aligned intent categories with verified held-out evaluation and out-of-distribution detection.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="text-cyan-400 font-bold mt-0.5">✓</span>

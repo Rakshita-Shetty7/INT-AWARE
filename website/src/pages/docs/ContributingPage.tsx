@@ -15,7 +15,7 @@ export const ContributingPage: React.FC = () => {
           Contributing & Developer Verification Guide
         </h1>
         <p className="text-slate-400 text-sm leading-relaxed mt-2">
-          Standards for developing, testing, retraining ML classifiers, and submitting pull requests to the INT-AWARE repository.
+          Standards for developing, testing, retraining ML classifiers, and code verification.
         </p>
       </div>
 
@@ -26,11 +26,11 @@ export const ContributingPage: React.FC = () => {
             1. Local Developer Setup
           </h2>
           <p className="text-xs text-slate-300 leading-relaxed mt-2">
-            Clone the repository and install all dependencies in a Python 3.12+ virtual environment:
+            Configure all dependencies in a Python 3.12+ virtual environment:
           </p>
           <CodeBlock
-            code={`git clone https://github.com/Rakshita-Shetty7/INT-AWARE.git
-cd INT-AWARE
+            code={`# Navigate to project root:
+cd intent-aware-deception
 
 # Create and activate virtual environment:
 python -m venv .venv
@@ -46,13 +46,13 @@ pip install -r requirements.txt`}
         {/* Section 2: Automated Test Suite */}
         <div>
           <h2 className="text-lg font-bold text-white border-b border-slate-800 pb-2 flex items-center justify-between">
-            <span>2. Running the Automated Test Suite (162 Tests)</span>
+            <span>2. Running the Automated Test Suite (166 Tests)</span>
             <span className="text-xs font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800">
-              100% Green
+              166 / 166 Passed
             </span>
           </h2>
           <p className="text-xs text-slate-300 leading-relaxed mt-2">
-            INT-AWARE maintains strict regression testing covering classifiers, model integrity, digital twin reconstruction, counterfactual simulations, and FastAPI endpoints:
+            The platform maintains strict hermetic regression testing covering classifiers, model integrity, digital twin reconstruction, counterfactual simulations, and FastAPI endpoints:
           </p>
           <CodeBlock
             code={`# Run complete test suite:

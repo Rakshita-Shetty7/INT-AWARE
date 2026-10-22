@@ -15,7 +15,7 @@ export const MacInstallPage: React.FC = () => {
           macOS Installation Guide (Apple Silicon & Intel)
         </h1>
         <p className="text-slate-400 text-sm leading-relaxed mt-2">
-          Step-by-step instructions for running INT-AWARE on macOS Ventura, Sonoma, and Sequoia across Apple Silicon (M1/M2/M3/M4) and Intel Macs.
+          Step-by-step instructions for running the platform on macOS Ventura, Sonoma, and Sequoia across Apple Silicon (M1/M2/M3/M4) and Intel Macs.
         </p>
       </div>
 
@@ -74,11 +74,11 @@ brew install --cask docker
             Open Terminal and clone the project:
           </p>
           <CodeBlock
-            code={`git clone https://github.com/Rakshita-Shetty7/INT-AWARE.git
-cd INT-AWARE
+            code={`# Navigate to project directory:
+cd intent-aware-deception
 cp .env.example .env`}
             language="bash"
-            title="macOS - Clone & Configure"
+            title="macOS - Configure Environment"
           />
         </div>
 

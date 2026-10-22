@@ -15,7 +15,7 @@ export const ApiReferencePage: React.FC = () => {
           REST & WebSocket API Reference
         </h1>
         <p className="text-slate-400 text-sm leading-relaxed mt-2">
-          Technical documentation for INT-AWARE's FastAPI backend endpoints, request payloads, response schemas, and real-time WebSocket channels.
+          Technical documentation for the FastAPI backend endpoints, request payloads, response schemas, and real-time WebSocket channels.
         </p>
       </div>
 

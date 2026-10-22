@@ -14,14 +14,14 @@ export const Footer: React.FC = () => {
               <div className="w-7 h-7 rounded-lg bg-cyan-600/30 border border-cyan-500/40 flex items-center justify-center">
                 <Shield className="w-4 h-4 text-cyan-400" />
               </div>
-              <span className="font-bold text-slate-100 text-sm tracking-tight">INT-AWARE</span>
+              <span className="font-bold text-slate-100 text-sm tracking-tight">Intent-Aware Deception</span>
             </div>
             <p className="text-slate-400 text-xs leading-relaxed">
               Intent-Aware Deception System for Real-Time Attacker Profiling. Evidence-driven honeypot intelligence with calibrated machine learning and zero host execution.
             </p>
             <div className="flex items-center gap-2 pt-2 text-[11px] font-mono text-emerald-400">
               <CheckCircle className="w-3.5 h-3.5" />
-              <span>162 / 162 Tests Verified</span>
+              <span>166 / 166 Automated Tests Verified</span>
             </div>
           </div>
 
@@ -88,24 +88,12 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Column 4: Resources & Source */}
+          {/* Column 4: Documentation & Guides */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold font-mono uppercase tracking-wider text-slate-200">
-              Resources & Repository
+              Operations & Verification
             </h4>
             <ul className="space-y-2">
-              <li>
-                <a
-                  href="https://github.com/Rakshita-Shetty7/INT-AWARE"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors"
-                >
-                  <GithubIcon className="w-3.5 h-3.5" />
-                  <span>GitHub Repository</span>
-                  <ExternalLink className="w-3 h-3 text-slate-600" />
-                </a>
-              </li>
               <li>
                 <Link to="/docs/troubleshooting" className="hover:text-cyan-400 transition-colors">
                   Troubleshooting & Common Errors
@@ -118,7 +106,12 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link to="/docs/contributing" className="hover:text-cyan-400 transition-colors">
-                  Contributing & Developer Guide
+                  Verification & Retraining Guide
+                </Link>
+              </li>
+              <li>
+                <Link to="/docs/configuration/env-vars" className="hover:text-cyan-400 transition-colors">
+                  Environment & Secrets Reference
                 </Link>
               </li>
             </ul>
@@ -128,21 +121,14 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500 font-mono">
           <div>
-            INT-AWARE Open Source Research Project. MIT License.
+            Intent-Aware Deception System for Real-Time Attacker Profiling
           </div>
           <div className="flex items-center gap-4">
-            <span>Primary Accuracy: 94.49%</span>
+            <span>Primary Accuracy: 100.0% (Held-Out)</span>
+            <span>•</span>
+            <span>166 Hermetic Tests Passed</span>
             <span>•</span>
             <span>Zero Host Execution</span>
-            <span>•</span>
-            <a
-              href="https://github.com/Rakshita-Shetty7/INT-AWARE"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-cyan-500 hover:text-cyan-400 transition-colors"
-            >
-              GitHub Source
-            </a>
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ export const WindowsInstallPage: React.FC = () => {
           Windows Installation Guide (Docker & WSL2)
         </h1>
         <p className="text-slate-400 text-sm leading-relaxed mt-2">
-          Complete, verified walkthrough for setting up INT-AWARE on Windows 10 and 11 using PowerShell and Docker Desktop.
+          Complete, verified walkthrough for setting up the platform on Windows 10 and 11 using PowerShell and Docker Desktop.
         </p>
       </div>
 
@@ -72,13 +72,13 @@ export const WindowsInstallPage: React.FC = () => {
             Step 2: Clone or Open the Repository
           </h2>
           <p className="text-xs text-slate-400 mt-1">
-            Clone the repository or navigate to your existing project folder:
+            Open the repository directory in PowerShell:
           </p>
           <CodeBlock
-            code={`git clone https://github.com/Rakshita-Shetty7/INT-AWARE.git
-cd INT-AWARE`}
+            code={`# Navigate to the project root:
+cd intent-aware-deception`}
             language="powershell"
-            title="PowerShell - Clone Repo"
+            title="PowerShell - Navigate to Project"
           />
         </div>
 

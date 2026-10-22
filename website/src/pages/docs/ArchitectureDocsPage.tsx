@@ -36,15 +36,15 @@ export const ArchitectureDocsPage: React.FC = () => {
             &nbsp;&nbsp;▼<br />
             [Hybrid Intent Engine]<br />
             &nbsp;&nbsp;├── Regex Rule Engine (High-severity instant signatures)<br />
-            &nbsp;&nbsp;├── Calibrated LinearSVC (94.49% held-out test accuracy)<br />
+            &nbsp;&nbsp;├── Calibrated LinearSVC (TF-IDF char/word n-grams, 100.0% held-out test accuracy)<br />
             &nbsp;&nbsp;└── Shannon Entropy Filter + Gemini Semantic Fallback<br />
             &nbsp;&nbsp;▼<br />
             [Markov Sequence Engine & Risk Progression]<br />
             &nbsp;&nbsp;├── Empirical Transition Probability P(Intent_t | Intent_t-1)<br />
-            &nbsp;&nbsp;├── Kill-Chain Stage Mapping (Recon → Exfil)<br />
+            &nbsp;&nbsp;├── Kill-Chain Stage Mapping (Reconnaissance → Exfiltration)<br />
             &nbsp;&nbsp;└── Cumulative Session Risk (0–100 scale, Critical Alert &ge; 75)<br />
             &nbsp;&nbsp;▼<br />
-            [Motor Async Persistence & WebSockets]<br />
+            [Database Persistence & Real-Time Broadcast]<br />
             &nbsp;&nbsp;├── MongoDB Collections: events, sessions, attackers, alerts<br />
             &nbsp;&nbsp;└── WebSockets: /ws/events, /ws/alerts<br />
             &nbsp;&nbsp;▼<br />

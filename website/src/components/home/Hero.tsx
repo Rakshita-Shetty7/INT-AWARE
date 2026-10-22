@@ -18,7 +18,7 @@ const SIMULATED_ATTACKS = [
     cmd: 'uname -a',
     intent: 'RECONNAISSANCE',
     stage: 'RECONNAISSANCE',
-    mitre: 'T1082 (System Info Discovery)',
+    mitre: 'T1592 (Gather Host Information)',
     confidence: '95.4%',
     source: 'ML',
     risk: 15,
@@ -76,7 +76,7 @@ export const Hero: React.FC = () => {
             {/* Status Pill */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-800/60 text-xs font-mono text-cyan-300 shadow-inner">
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-              <span>Research-Grade Platform · Calibrated 94.49% Real Test Accuracy</span>
+              <span>Calibrated LinearSVC Classifier · 10-Class Intent Profiling</span>
             </div>
 
             {/* Main Headline */}
@@ -89,7 +89,7 @@ export const Hero: React.FC = () => {
 
             {/* Description */}
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              Transform passive honeypot captures into active threat intelligence. INT-AWARE ingests live shell interactions from isolated Cowrie honeypots, classifies attacker intent with a leakage-resistant ML pipeline, models kill-chain sequence transitions, and scores risk dynamically with <strong>zero host execution</strong>.
+              Transform passive honeypot captures into active threat intelligence. The deception system ingests live shell interactions from isolated Cowrie honeypots, classifies attacker intent with a leakage-resistant ML pipeline, models kill-chain sequence transitions, and scores risk dynamically with <strong>zero host execution</strong>.
             </p>
 
             {/* CTAs */}
@@ -111,15 +111,13 @@ export const Hero: React.FC = () => {
                 <span>Installation Guides</span>
               </Link>
 
-              <a
-                href="https://github.com/Rakshita-Shetty7/INT-AWARE"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto px-5 py-3.5 rounded-xl border border-slate-800 hover:border-slate-700 bg-slate-900/40 text-slate-400 hover:text-white text-sm flex items-center justify-center gap-2 transition-colors"
+              <Link
+                to="/docs/architecture"
+                className="w-full sm:w-auto px-5 py-3.5 rounded-xl border border-slate-800 hover:border-slate-700 bg-slate-900/40 text-slate-300 hover:text-white text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer"
               >
-                <GithubIcon className="w-4 h-4" />
-                <span>GitHub Source</span>
-              </a>
+                <Shield className="w-4 h-4 text-cyan-400" />
+                <span>Architecture</span>
+              </Link>
             </div>
 
             {/* Key Value Badges */}

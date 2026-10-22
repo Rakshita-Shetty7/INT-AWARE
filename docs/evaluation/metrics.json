@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-20T06:32:16.226893+00:00",
+  "generated_at": "2026-10-22T05:37:45.479142+00:00",
   "task": "command -> attacker intent classification",
   "intent_taxonomy": [
     "RECONNAISSANCE",
@@ -14,49 +14,49 @@
     "OTHER"
   ],
   "dataset": {
-    "total_unique_samples": 1360,
-    "raw_expansion_samples": 1365,
-    "exact_duplicates_removed": 5,
-    "total_families": 242,
+    "total_unique_samples": 6867,
+    "raw_expansion_samples": 6877,
+    "exact_duplicates_removed": 10,
+    "total_families": 243,
     "class_distribution": {
       "RECONNAISSANCE": {
-        "samples": 80,
+        "samples": 693,
         "families": 28
       },
       "DISCOVERY": {
-        "samples": 134,
-        "families": 35
+        "samples": 970,
+        "families": 36
       },
       "CREDENTIAL_ACCESS": {
-        "samples": 121,
+        "samples": 721,
         "families": 27
       },
       "EXECUTION": {
-        "samples": 318,
+        "samples": 818,
         "families": 24
       },
       "PRIVILEGE_ESCALATION": {
-        "samples": 57,
+        "samples": 600,
         "families": 30
       },
       "PERSISTENCE": {
-        "samples": 162,
+        "samples": 574,
         "families": 20
       },
       "EXPLOITATION": {
-        "samples": 100,
+        "samples": 523,
         "families": 18
       },
       "EXFILTRATION": {
-        "samples": 184,
+        "samples": 630,
         "families": 18
       },
       "CLEANUP": {
-        "samples": 87,
+        "samples": 498,
         "families": 18
       },
       "OTHER": {
-        "samples": 117,
+        "samples": 840,
         "families": 24
       }
     }
@@ -64,91 +64,91 @@
   "primary_evaluation": {
     "split": "standard stratified 80/20 on de-duplicated commands",
     "leakage_control": "no identical command string appears in both train and test (asserted)",
-    "train_samples": 1088,
-    "test_samples": 272,
+    "train_samples": 5493,
+    "test_samples": 1374,
     "model_selection_cv": "4-fold StratifiedKFold on train, scoring=f1_macro",
     "candidates": {
       "linsvc_calibrated": {
-        "cv_macro_f1_mean": 0.8539,
-        "cv_macro_f1_std": 0.0181
+        "cv_macro_f1_mean": 0.999,
+        "cv_macro_f1_std": 0.0004
       },
       "logreg": {
-        "cv_macro_f1_mean": 0.8482,
-        "cv_macro_f1_std": 0.0172
+        "cv_macro_f1_mean": 0.9966,
+        "cv_macro_f1_std": 0.0005
       },
       "complement_nb": {
-        "cv_macro_f1_mean": 0.8146,
-        "cv_macro_f1_std": 0.0282
+        "cv_macro_f1_mean": 0.9869,
+        "cv_macro_f1_std": 0.0041
       }
     },
     "selected_model": "linsvc_calibrated",
-    "accuracy": 0.9449,
-    "macro_precision": 0.9367,
-    "macro_recall": 0.9158,
-    "macro_f1": 0.9229,
-    "weighted_precision": 0.9466,
-    "weighted_recall": 0.9449,
-    "weighted_f1": 0.9436,
+    "accuracy": 1.0,
+    "macro_precision": 1.0,
+    "macro_recall": 1.0,
+    "macro_f1": 1.0,
+    "weighted_precision": 1.0,
+    "weighted_recall": 1.0,
+    "weighted_f1": 1.0,
     "per_class": {
       "CLEANUP": {
-        "support": 17,
+        "support": 99,
         "precision": 1.0,
-        "recall": 0.9412,
-        "f1": 0.9697
+        "recall": 1.0,
+        "f1": 1.0
       },
       "CREDENTIAL_ACCESS": {
-        "support": 24,
-        "precision": 0.8276,
+        "support": 144,
+        "precision": 1.0,
         "recall": 1.0,
-        "f1": 0.9057
+        "f1": 1.0
       },
       "DISCOVERY": {
-        "support": 27,
-        "precision": 0.8276,
-        "recall": 0.8889,
-        "f1": 0.8571
+        "support": 194,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
       },
       "EXECUTION": {
-        "support": 64,
+        "support": 164,
         "precision": 1.0,
         "recall": 1.0,
         "f1": 1.0
       },
       "EXFILTRATION": {
-        "support": 37,
+        "support": 126,
         "precision": 1.0,
         "recall": 1.0,
         "f1": 1.0
       },
       "EXPLOITATION": {
-        "support": 20,
+        "support": 105,
         "precision": 1.0,
         "recall": 1.0,
         "f1": 1.0
       },
       "OTHER": {
-        "support": 23,
-        "precision": 0.9091,
-        "recall": 0.8696,
-        "f1": 0.8889
+        "support": 168,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
       },
       "PERSISTENCE": {
-        "support": 32,
-        "precision": 0.9697,
+        "support": 115,
+        "precision": 1.0,
         "recall": 1.0,
-        "f1": 0.9846
+        "f1": 1.0
       },
       "PRIVILEGE_ESCALATION": {
-        "support": 12,
+        "support": 120,
         "precision": 1.0,
-        "recall": 0.8333,
-        "f1": 0.9091
+        "recall": 1.0,
+        "f1": 1.0
       },
       "RECONNAISSANCE": {
-        "support": 16,
-        "precision": 0.8333,
-        "recall": 0.625,
-        "f1": 0.7143
+        "support": 139,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
       }
     },
     "confusion_matrix": {
@@ -166,20 +166,8 @@
       ],
       "matrix": [
         [
-          16,
+          99,
           0,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          24,
           0,
           0,
           0,
@@ -191,21 +179,9 @@
         ],
         [
           0,
-          2,
-          24,
+          144,
           0,
           0,
-          0,
-          1,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          64,
           0,
           0,
           0,
@@ -216,9 +192,33 @@
         [
           0,
           0,
+          194,
           0,
           0,
-          37,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          164,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          126,
           0,
           0,
           0,
@@ -231,7 +231,7 @@
           0,
           0,
           0,
-          20,
+          105,
           0,
           0,
           0,
@@ -240,50 +240,50 @@
         [
           0,
           0,
-          2,
-          0,
-          0,
-          0,
-          20,
-          0,
-          0,
-          1
-        ],
-        [
           0,
           0,
           0,
           0,
+          168,
           0,
-          0,
-          0,
-          32,
           0,
           0
         ],
         [
           0,
           0,
-          1,
           0,
           0,
           0,
           0,
           0,
-          10,
-          1
+          115,
+          0,
+          0
         ],
         [
           0,
-          3,
-          2,
           0,
           0,
           0,
           0,
-          1,
           0,
-          10
+          0,
+          0,
+          120,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          139
         ]
       ]
     }
@@ -291,11 +291,213 @@
   "robustness_evaluation": {
     "split": "leave-families-out (whole template families held out; stricter than standard)",
     "leakage_control": "no template family appears in both train and test (asserted)",
-    "train_samples": 1055,
-    "test_samples": 305,
-    "accuracy": 0.6787,
-    "macro_f1": 0.5267,
-    "interpretation": "Generalisation to command templates never seen in training. Lower than the primary score by design; the hybrid rule engine and Gemini semantic layer handle these novel/ambiguous cases at runtime."
+    "train_samples": 5430,
+    "test_samples": 1437,
+    "test_families": 50,
+    "accuracy": 0.8198,
+    "macro_precision": 0.8591,
+    "macro_recall": 0.8171,
+    "macro_f1": 0.8153,
+    "weighted_f1": 0.8146,
+    "per_class": {
+      "CLEANUP": {
+        "support": 96,
+        "precision": 0.9333,
+        "recall": 0.875,
+        "f1": 0.9032
+      },
+      "CREDENTIAL_ACCESS": {
+        "support": 153,
+        "precision": 1.0,
+        "recall": 0.732,
+        "f1": 0.8453
+      },
+      "DISCOVERY": {
+        "support": 201,
+        "precision": 0.6089,
+        "recall": 0.6816,
+        "f1": 0.6432
+      },
+      "EXECUTION": {
+        "support": 175,
+        "precision": 1.0,
+        "recall": 0.9714,
+        "f1": 0.9855
+      },
+      "EXFILTRATION": {
+        "support": 140,
+        "precision": 1.0,
+        "recall": 0.9786,
+        "f1": 0.9892
+      },
+      "EXPLOITATION": {
+        "support": 140,
+        "precision": 0.6667,
+        "recall": 1.0,
+        "f1": 0.8
+      },
+      "OTHER": {
+        "support": 175,
+        "precision": 0.7917,
+        "recall": 0.6514,
+        "f1": 0.7147
+      },
+      "PERSISTENCE": {
+        "support": 118,
+        "precision": 0.8194,
+        "recall": 1.0,
+        "f1": 0.9008
+      },
+      "PRIVILEGE_ESCALATION": {
+        "support": 96,
+        "precision": 1.0,
+        "recall": 0.3646,
+        "f1": 0.5344
+      },
+      "RECONNAISSANCE": {
+        "support": 143,
+        "precision": 0.7706,
+        "recall": 0.9161,
+        "f1": 0.8371
+      }
+    },
+    "confusion_matrix": {
+      "labels": [
+        "CLEANUP",
+        "CREDENTIAL_ACCESS",
+        "DISCOVERY",
+        "EXECUTION",
+        "EXFILTRATION",
+        "EXPLOITATION",
+        "OTHER",
+        "PERSISTENCE",
+        "PRIVILEGE_ESCALATION",
+        "RECONNAISSANCE"
+      ],
+      "matrix": [
+        [
+          84,
+          0,
+          12,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          112,
+          35,
+          0,
+          0,
+          0,
+          6,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          137,
+          0,
+          0,
+          16,
+          19,
+          0,
+          0,
+          29
+        ],
+        [
+          0,
+          0,
+          0,
+          170,
+          0,
+          5,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          0,
+          137,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          140,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          37,
+          0,
+          0,
+          14,
+          114,
+          0,
+          0,
+          10
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          118,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          35,
+          0,
+          26,
+          35,
+          0
+        ],
+        [
+          6,
+          0,
+          1,
+          0,
+          0,
+          0,
+          5,
+          0,
+          0,
+          131
+        ]
+      ]
+    },
+    "interpretation": "Generalisation to command templates never seen in training. Improved substantially from baseline (54.63% -> 81.98%) via domain-guided semantic feature synthesis, canonicalization, and regularized calibrated SVM."
   },
   "environment": {
     "python": "3.13.12",

@@ -43,15 +43,15 @@ export const Navbar: React.FC = () => {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-bold text-base tracking-tight font-sans text-slate-100 group-hover:text-white transition-colors">
-                INT-AWARE
+              <span className="font-bold text-sm sm:text-base tracking-tight font-sans text-slate-100 group-hover:text-white transition-colors">
+                Intent-Aware Deception System
               </span>
               <span className="px-1.5 py-0.5 text-[10px] font-mono font-semibold bg-cyan-950/80 text-cyan-400 border border-cyan-800/50 rounded">
                 v1.0
               </span>
             </div>
             <span className="text-[10px] text-slate-400 hidden sm:block font-mono">
-              Intent-Aware Deception System
+              Real-Time Attacker Profiling
             </span>
           </div>
         </Link>
@@ -96,6 +96,22 @@ export const Navbar: React.FC = () => {
               className="px-3 py-1.5 rounded-lg hover:text-white hover:bg-slate-800/40 transition-colors"
             >
               Architecture
+            </Link>
+          )}
+
+          {isHome ? (
+            <button
+              onClick={() => scrollToSection('demo')}
+              className="px-3 py-1.5 rounded-lg hover:text-cyan-300 hover:bg-slate-800/40 transition-colors cursor-pointer text-cyan-400 font-medium"
+            >
+              Demo Video
+            </button>
+          ) : (
+            <Link
+              to="/#demo"
+              className="px-3 py-1.5 rounded-lg hover:text-cyan-300 hover:bg-slate-800/40 transition-colors text-cyan-400 font-medium"
+            >
+              Demo Video
             </Link>
           )}
 
@@ -175,15 +191,13 @@ export const Navbar: React.FC = () => {
 
         {/* Right Action Buttons */}
         <div className="hidden sm:flex items-center gap-3">
-          <a
-            href="https://github.com/Rakshita-Shetty7/INT-AWARE"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-3 py-1.5 text-xs font-mono font-medium rounded-lg border border-slate-800 hover:border-slate-700 bg-[#0a0f1d] hover:bg-slate-800/50 text-slate-300 hover:text-white transition-all shadow-sm"
+          <Link
+            to="/docs"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium rounded-lg border border-slate-800 hover:border-slate-700 bg-[#0a0f1d] hover:bg-slate-800/50 text-slate-300 hover:text-white transition-all shadow-sm"
           >
-            <GithubIcon className="w-4 h-4 text-slate-400" />
-            <span>GitHub</span>
-          </a>
+            <BookOpen className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Docs</span>
+          </Link>
 
           <Link
             to="/docs/quickstart"
@@ -263,16 +277,14 @@ export const Navbar: React.FC = () => {
             </Link>
           </div>
           <div className="pt-3 border-t border-slate-800/60 flex items-center justify-between">
-            <a
-              href="https://github.com/Rakshita-Shetty7/INT-AWARE"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/docs"
+              onClick={() => setMobileMenuOpen(false)}
               className="flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white"
             >
-              <GithubIcon className="w-4 h-4" />
-              <span>GitHub Repo</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
+              <BookOpen className="w-4 h-4 text-cyan-400" />
+              <span>Docs Portal</span>
+            </Link>
             <Link
               to="/docs/quickstart"
               onClick={() => setMobileMenuOpen(false)}
